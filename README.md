@@ -2,6 +2,7 @@ final-project-Juan-cc
 =====================
 [![Build Status](https://travis-ci.org/Wearoft/final-project-Juan-cc.svg?branch=master)](https://travis-ci.org/Wearoft/final-project-Juan-cc)
 [![Coverage Status](https://coveralls.io/repos/github/Wearoft/final-project-Juan-cc/badge.svg?branch=master)](https://coveralls.io/github/Wearoft/final-project-Juan-cc?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/Wearoft/final-project-Juan-cc/badge.svg)](https://snyk.io/test/github/Wearoft/final-project-Juan-cc)
 
 # Documentation
 * Description: https://docs.google.com/document/d/1Q8KoQVWiCFN1jqC8iK3s12gHI_9GBJevjq5aGZrJqHI/edit?usp=sharing
