@@ -30,7 +30,7 @@ Compile app Locally:
 - go to /final-project-Juan-cc/kmp/client and run: npm install
 - go to /final-project-Juan-cc/kmp and run: npm install
 - configure ganache on port 8545
-- migrate contracts
+- go to /final-project-Juan-cc/kmp and migrate contracts
 - start your browser and authenticate metamask to your local ganache
 - go to /final-project-Juan-cc/kmp/client and run: npm run start
 - you are all set!
