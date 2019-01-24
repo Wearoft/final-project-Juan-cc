@@ -23,9 +23,9 @@ deploy:
   app: kmpblockchain
 
 
-before_runcoverage:
+before_script:
   - testrpc > /dev/null &
   - sleep 5
 
-runcoverage:
+after_script:
   - npm run coverage && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
