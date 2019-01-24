@@ -10,10 +10,11 @@ install:
   - npm install -g ganache-cli
   - npm install -g truffle
 
-before_runcoverage:
+before_scripts:
   - testrpc > /dev/null &
   - sleep 5
 
-runcoverage:
+
+scripts:
   - cd kmp
   - npm run coverage && cat coverage/lcov.info | coveralls
