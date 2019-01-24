@@ -8,7 +8,7 @@
   "scripts": {
     "coverage": "scripts/coverage.sh"
   },
-  "homepage": "https://github.com/Juan-cc/final-project-Juan-cc",
+  "homepage": "https://github.com/Wearoft/final-project-Juan-cc",
   "devDependencies": {
     "truffle": "^5.0.0",
     "coveralls": "^3.0.2",

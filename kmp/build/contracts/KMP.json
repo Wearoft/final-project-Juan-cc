@@ -10171,11 +10171,11 @@
     "4": {
       "events": {},
       "links": {
-        "CompanyFactory": "0x91E8400Fd5A19c5254Ab81B296700927F0b1973f",
-        "TokenFactory": "0x3e4950d737B73A07437F52D0CF890a9FA6775614"
+        "CompanyFactory": "0x86583B84A44bC80716F3CA122a615005806FDC2c",
+        "TokenFactory": "0x352F93925Ba3a1eBbA851963A153cdaa5Ac105f5"
       },
-      "address": "0x951850fA6fAddf077A6Bc953b09f344A24c33aCC",
-      "transactionHash": "0x6e4608c5b05ee09c49430619949cd15c8df26cf09299b5df1d66dcee9a7406e9"
+      "address": "0x22A38A76CC9571482Ad9Df4dac9D4fAFdcCc3c6c",
+      "transactionHash": "0x598a1f7a1edac297f63eda6b333be5799140d8e6bcc3a34e4125aa5b817e0135"
     },
     "4447": {
       "events": {},
@@ -10198,7 +10198,7 @@
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-24T05:23:10.083Z",
+  "updatedAt": "2019-01-24T17:35:45.252Z",
   "devdoc": {
     "methods": {}
   },
