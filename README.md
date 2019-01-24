@@ -18,18 +18,18 @@ Prerequisites:
 - Node v8.10.0
 - Web3 ^1.0.0-beta.35
 
-Try the app (Rinkeby):
+Try on Rinkeby:
 ----------------
 - start your browser and authenticate metamask to Rinkeby
 - go to https://kmpblockchain.herokuapp.com/
 - you are all set!
 
-Compile app Locally:
+Run Locally:
 ---------------
 - **Setup**
   - download project source code.
   - go to /final-project-Juan-cc/kmp and run: npm install
-  - go to /final-project-Juan-cc/kmp/client and run: npm install
+  - go to /final-project-Juan-cc/kmp/client and run: npm install && npm run link-contracts
   - start ganache on port 8545
 - **Unit Testing**
   - on /final-project-Juan-cc/kmp run: truffle migrate --reset --all
