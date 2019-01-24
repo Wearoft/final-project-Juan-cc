@@ -39,14 +39,14 @@
       "signature": "0x40cb3462"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610203806100326000396000f3fe60806040526004361061004b5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166340cb346281146100505780638da5cb5b14610092575b600080fd5b34801561005c57600080fd5b506100906004803603602081101561007357600080fd5b503573ffffffffffffffffffffffffffffffffffffffff166100d0565b005b34801561009e57600080fd5b506100a76101bb565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b600054339073ffffffffffffffffffffffffffffffffffffffff16811461017e57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602260248201527f4163636573732064656e6965642e20436f6d70616e79206f776e6572206f6e6c60448201527f792e000000000000000000000000000000000000000000000000000000000000606482015290519081900360840190fd5b506000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a723058202ccb8804652f6a37346a8b29472ab374f31237fad0ed4435436431ad48d843820029",
-  "deployedBytecode": "0x60806040526004361061004b5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166340cb346281146100505780638da5cb5b14610092575b600080fd5b34801561005c57600080fd5b506100906004803603602081101561007357600080fd5b503573ffffffffffffffffffffffffffffffffffffffff166100d0565b005b34801561009e57600080fd5b506100a76101bb565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b600054339073ffffffffffffffffffffffffffffffffffffffff16811461017e57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602260248201527f4163636573732064656e6965642e20436f6d70616e79206f776e6572206f6e6c60448201527f792e000000000000000000000000000000000000000000000000000000000000606482015290519081900360840190fd5b506000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a723058202ccb8804652f6a37346a8b29472ab374f31237fad0ed4435436431ad48d843820029",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008054600160a060020a03191633179055610203806100326000396000f3fe60806040526004361061004b5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166340cb346281146100505780638da5cb5b14610092575b600080fd5b34801561005c57600080fd5b506100906004803603602081101561007357600080fd5b503573ffffffffffffffffffffffffffffffffffffffff166100d0565b005b34801561009e57600080fd5b506100a76101bb565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b600054339073ffffffffffffffffffffffffffffffffffffffff16811461017e57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602260248201527f4163636573732064656e6965642e20436f6d70616e79206f776e6572206f6e6c60448201527f792e000000000000000000000000000000000000000000000000000000000000606482015290519081900360840190fd5b506000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a723058201ef87d270d63063b154822201236c77f4475b742fd72efd076a3e7f7224e7afb0029",
+  "deployedBytecode": "0x60806040526004361061004b5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166340cb346281146100505780638da5cb5b14610092575b600080fd5b34801561005c57600080fd5b506100906004803603602081101561007357600080fd5b503573ffffffffffffffffffffffffffffffffffffffff166100d0565b005b34801561009e57600080fd5b506100a76101bb565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b600054339073ffffffffffffffffffffffffffffffffffffffff16811461017e57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602260248201527f4163636573732064656e6965642e20436f6d70616e79206f776e6572206f6e6c60448201527f792e000000000000000000000000000000000000000000000000000000000000606482015290519081900360840190fd5b506000805473ffffffffffffffffffffffffffffffffffffffff191673ffffffffffffffffffffffffffffffffffffffff92909216919091179055565b60005473ffffffffffffffffffffffffffffffffffffffff168156fea165627a7a723058201ef87d270d63063b154822201236c77f4475b742fd72efd076a3e7f7224e7afb0029",
   "sourceMap": "25:438:9:-;;;132:59;8:9:-1;5:2;;;30:1;27;20:12;5:2;-1:-1;162:5:9;:18;;-1:-1:-1;;;;;;162:18:9;170:10;162:18;;;25:438;;;;;;",
   "deployedSourceMap": "25:438:9:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;344:117;;8:9:-1;5:2;;;30:1;27;20:12;5:2;344:117:9;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;344:117:9;;;;;;;101:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;101:20:9;;;;;;;;;;;;;;;;;;;;;;;344:117;253:5;;414:10;;253:15;:5;:15;;245:62;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;440:5:9;:14;;-1:-1:-1;;440:14:9;;;;;;;;;;;;344:117::o;101:20::-;;;;;;:::o",
   "source": "pragma solidity ^0.5.0;\n\ncontract Owned{\n    /* TODO: Can be changed for Ownable from zepellin*/\n    address public owner;\n    \n    constructor() public{\n        owner = msg.sender;    \n    }\n    \n    modifier ownerOnly(address _owner){\n        require(owner == _owner, \"Access denied. Company owner only.\");    \n        _;\n    }\n    \n    \n    function modifyOwner(address _owner)\n        public\n        ownerOnly(msg.sender)\n    {\n        owner = _owner;\n    }\n}\n",
-  "sourcePath": "/home/juan/consensys/otherrepos/final-project-Juan-cc/kmp/contracts/Owned.sol",
+  "sourcePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/contracts/Owned.sol",
   "ast": {
-    "absolutePath": "/home/juan/consensys/otherrepos/final-project-Juan-cc/kmp/contracts/Owned.sol",
+    "absolutePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/contracts/Owned.sol",
     "exportedSymbols": {
       "Owned": [
         1491
@@ -143,7 +143,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1736,
+                        "referencedDeclaration": 1703,
                         "src": "170:3:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -290,10 +290,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1739,
-                        1740
+                        1706,
+                        1707
                       ],
-                      "referencedDeclaration": 1740,
+                      "referencedDeclaration": 1707,
                       "src": "245:7:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -435,7 +435,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1736,
+                      "referencedDeclaration": 1703,
                       "src": "414:3:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -531,7 +531,7 @@
     "src": "0:464:9"
   },
   "legacyAST": {
-    "absolutePath": "/home/juan/consensys/otherrepos/final-project-Juan-cc/kmp/contracts/Owned.sol",
+    "absolutePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/contracts/Owned.sol",
     "exportedSymbols": {
       "Owned": [
         1491
@@ -628,7 +628,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1736,
+                        "referencedDeclaration": 1703,
                         "src": "170:3:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -775,10 +775,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1739,
-                        1740
+                        1706,
+                        1707
                       ],
-                      "referencedDeclaration": 1740,
+                      "referencedDeclaration": 1707,
                       "src": "245:7:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -920,7 +920,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1736,
+                      "referencedDeclaration": 1703,
                       "src": "414:3:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -1035,12 +1035,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x263DAbC1150Ca00738B9eef8b91Ce26FD1665Afe",
-      "transactionHash": "0x7e3af6a49f5245872e6d7ea862ac0ac173cabd06f7c6f0a5dbccacf40a68c4e2"
+      "address": "0x406AD4E1Ec7E72D1003180884688c48D45edb320",
+      "transactionHash": "0x9565385da32db4b691a4a4db3dd1a3da5701ba7f87f2f70d8904c2a26d153f50"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-23T23:31:28.959Z",
+  "updatedAt": "2019-01-24T05:23:10.096Z",
   "devdoc": {
     "methods": {}
   },

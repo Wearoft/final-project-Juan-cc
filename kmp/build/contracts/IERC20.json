@@ -180,9 +180,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\n/**\n * @title ERC20 interface\n * @dev see https://github.com/ethereum/EIPs/issues/20\n */\ninterface IERC20 {\n    function transfer(address to, uint256 value) external returns (bool);\n\n    function approve(address spender, uint256 value) external returns (bool);\n\n    function transferFrom(address from, address to, uint256 value) external returns (bool);\n\n    function totalSupply() external view returns (uint256);\n\n    function balanceOf(address who) external view returns (uint256);\n\n    function allowance(address owner, address spender) external view returns (uint256);\n\n    event Transfer(address indexed from, address indexed to, uint256 value);\n\n    event Approval(address indexed owner, address indexed spender, uint256 value);\n}\n",
-  "sourcePath": "/home/juan/consensys/otherrepos/final-project-Juan-cc/kmp/client/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+  "sourcePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/client/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
   "ast": {
-    "absolutePath": "/home/juan/consensys/otherrepos/final-project-Juan-cc/kmp/client/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+    "absolutePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/client/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
     "exportedSymbols": {
       "IERC20": [
         686
@@ -1015,7 +1015,7 @@
     "src": "0:763:3"
   },
   "legacyAST": {
-    "absolutePath": "/home/juan/consensys/otherrepos/final-project-Juan-cc/kmp/client/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
+    "absolutePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/client/node_modules/openzeppelin-solidity/contracts/token/ERC20/IERC20.sol",
     "exportedSymbols": {
       "IERC20": [
         686
@@ -1853,7 +1853,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-23T23:14:21.715Z",
+  "updatedAt": "2019-01-24T05:23:05.790Z",
   "devdoc": {
     "details": "see https://github.com/ethereum/EIPs/issues/20",
     "methods": {},
