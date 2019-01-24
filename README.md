@@ -22,12 +22,9 @@ final-project-Juan-cc
 - you are all set!
 
 ## Run Locally
-###Setup
+### Setup
   - download project source code.
-  - go to /final-project-Juan-cc/kmp and run:
-```
-npm install
-```
+  - go to /final-project-Juan-cc/kmp and run: npm install
   - go to /final-project-Juan-cc/kmp/client and run: **npm install && npm run link-contracts**
   - start ganache on port 8545
 ### Unit Testing
