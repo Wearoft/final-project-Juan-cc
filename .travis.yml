@@ -10,11 +10,22 @@ install:
   - npm install -g ganache-cli
   - npm install -g truffle
 
-before_scripts:
+script:
+  - ganache-cli &
+  - sleep 5
+  - truffle test
+
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "d180cd52-ee50-42cd-9b8b-9cd049ab21b5"
+  app: kmpblockchain
+
+
+before_runcoverage:
   - testrpc > /dev/null &
   - sleep 5
 
-
-scripts:
-  - cd kmp
-  - npm run coverage && cat coverage/lcov.info | coveralls
+runcoverage:
+  - npm run coverage && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
