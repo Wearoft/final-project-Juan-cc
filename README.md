@@ -16,7 +16,7 @@ final-project-Juan-cc
 - Node v8.10.0
 - Web3 ^1.0.0-beta.35
 
-## Try on Rinkeby
+## Play on Rinkeby
 - start your browser and authenticate metamask to Rinkeby
 - go to https://kmpblockchain.herokuapp.com/
 - Play with it!
