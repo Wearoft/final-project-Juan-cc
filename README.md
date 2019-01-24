@@ -32,6 +32,7 @@ Run Locally:
   - go to /final-project-Juan-cc/kmp/client and run: **npm install && npm run link-contracts**
   - start ganache on port 8545
 - **Unit Testing**
+  - tip: if you have a symbolic link called "contracts" inside /final-project-Juan-cc/kmp/build/contracts, then please delete that link to avoid the error described below *1  
   - on /final-project-Juan-cc/kmp run: **truffle migrate --reset --all**
   - on /final-project-Juan-cc/kmp run: **truffle test** (here you can validate unit tests)
 - **dApp**
@@ -65,4 +66,11 @@ Network: rinkeby (id: 4)
 Code Coverage useful link to fix parser
 ------------
 - https://github.com/sc-forks/solidity-parser/pull/18 (solidity-coverage)
+
+Symbolic link error (*1)
+--------------
+  fs.js:675
+    return binding.read(fd, buffer, offset, length, position);
+                   ^
+  Error: EISDIR: illegal operation on a directory, read
 
