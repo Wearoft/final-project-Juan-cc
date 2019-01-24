@@ -18,26 +18,40 @@ Prerequisites:
 - Node v8.10.0
 - Web3 ^1.0.0-beta.35
 
-Try the app (Rinkeby):
+Try on Rinkeby:
 ----------------
 - start your browser and authenticate metamask to Rinkeby
 - go to https://kmpblockchain.herokuapp.com/
 - you are all set!
 
-Compile app Locally:
+Run Locally:
 ---------------
-- download project source code.
-- go to /final-project-Juan-cc/kmp/client and run: npm install
-- go to /final-project-Juan-cc/kmp and run: npm install
-- configure ganache on port 8545
-- migrate contracts
-- start your browser and authenticate metamask to your local ganache
-- go to /final-project-Juan-cc/kmp/client and run: npm run start
-- you are all set!
+- **Setup**
+  - download project source code.
+  - go to /final-project-Juan-cc/kmp and run: **npm install**
+  - go to /final-project-Juan-cc/kmp/client and run: **npm install && npm run link-contracts**
+  - start ganache on port 8545
+- **Unit Testing**
+  - tip: if you have a symbolic link called "contracts" inside /final-project-Juan-cc/kmp/build/contracts, then please delete that link to avoid the error described below *1  
+  - on /final-project-Juan-cc/kmp run: **truffle migrate --reset --all**
+  - on /final-project-Juan-cc/kmp run: **truffle test** (here you can validate unit tests)
+- **dApp**
+  - start a browser and authenticate metamask to your local ganache (using your 12 words seed and password)
+  - go to /final-project-Juan-cc/kmp/client and run: **npm run start** (here you can validate web3 interaction with dApp)
+  - Use the dApp!
+
+- **Code Coverage**
+  - replace this file: /final-project-Juan-cc/kmp/node_modules/solidity-parser-sc/build/parser.js with this one: https://raw.githubusercontent.com/maxsam4/solidity-parser/solidity-0.5/build/parser.js 
+  - on /final-project-Juan-cc/kmp run: npm run coverage (here you can validate code coverage)
 
 Used library:
 --------------
 - "openzeppelin-solidity": "2.1.2"
+
+Created libraries
+--------------
+- CompanyFactory.sol
+- TokenFactory.sol
 
 Network: rinkeby (id: 4)
 -----------------------
@@ -49,6 +63,14 @@ Network: rinkeby (id: 4)
 *  TokenFactory: 0x4776AEd6BD5b2E1d1D9F523942F37EDE3ea9d23E
 
 
-Useful links
+Code Coverage useful link to fix parser
 ------------
 - https://github.com/sc-forks/solidity-parser/pull/18 (solidity-coverage)
+
+Symbolic link error (*1)
+--------------
+  fs.js:675
+    return binding.read(fd, buffer, offset, length, position);
+                   ^
+  Error: EISDIR: illegal operation on a directory, read
+
