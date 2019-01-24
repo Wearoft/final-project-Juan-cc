@@ -19,7 +19,7 @@ final-project-Juan-cc
 ## Try on Rinkeby
 - start your browser and authenticate metamask to Rinkeby
 - go to https://kmpblockchain.herokuapp.com/
-- you are all set!
+- Play with it!
 
 ## Run Locally
 ### Setup
@@ -34,7 +34,7 @@ final-project-Juan-cc
 ### dApp
   - start a browser and authenticate metamask to your local ganache (using your 12 words seed and password)
   - go to /final-project-Juan-cc/kmp/client and run: **npm run start** (here you can validate web3 interaction with dApp)
-  - Use the dApp!
+  - Play with your dApp!
 
 ### Code Coverage
   - replace this file: /final-project-Juan-cc/kmp/node_modules/solidity-parser-sc/build/parser.js with this one: https://raw.githubusercontent.com/maxsam4/solidity-parser/solidity-0.5/build/parser.js 
