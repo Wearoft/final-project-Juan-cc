@@ -28,15 +28,15 @@ Run Locally:
 ---------------
 - **Setup**
   - download project source code.
-  - go to /final-project-Juan-cc/kmp and run: npm install
-  - go to /final-project-Juan-cc/kmp/client and run: npm install && npm run link-contracts
+  - go to /final-project-Juan-cc/kmp and run: **npm install**
+  - go to /final-project-Juan-cc/kmp/client and run: **npm install && npm run link-contracts**
   - start ganache on port 8545
 - **Unit Testing**
-  - on /final-project-Juan-cc/kmp run: truffle migrate --reset --all
-  - on /final-project-Juan-cc/kmp run: truffle test (here you can validate unit tests)
+  - on /final-project-Juan-cc/kmp run: **truffle migrate --reset --all**
+  - on /final-project-Juan-cc/kmp run: **truffle test** (here you can validate unit tests)
 - **dApp**
   - start a browser and authenticate metamask to your local ganache (using your 12 words seed and password)
-  - go to /final-project-Juan-cc/kmp/client and run: npm run start (here you can validate web3 interaction with dApp)
+  - go to /final-project-Juan-cc/kmp/client and run: **npm run start** (here you can validate web3 interaction with dApp)
   - Use the dApp!
 
 - **Code Coverage**
