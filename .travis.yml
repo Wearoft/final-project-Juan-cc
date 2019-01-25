@@ -21,7 +21,9 @@ before_script:
   - sleep 5
 
 after_script:
+  - "travis_wait 30 sleep 1800 &"
   - curl -o ./node_modules/solidity-parser-sc/build/parser.js https://raw.githubusercontent.com/maxsam4/solidity-parser/solidity-0.5/build/parser.js
+  - cat ./node_modules/solidity-parser-sc/build/parser.js 
   - npm run coverage 
   - ../publishCoverage.sh
 
