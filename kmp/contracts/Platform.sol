@@ -6,40 +6,68 @@ import "./Company.sol";
 import "./CompanyFactory.sol";
 import "./TokenFactory.sol";
 
+
+/**
+    @author Juan Castellon
+    @title Platform main contract to expose functionality to users.
+    @notice 
+        Platform contract will allow  KMP Platform users to create 
+        their own company and create their own tokens. 
+ */
 contract Platform is Owned {
+
+    /** @dev CompanyFactory library usage */
     using CompanyFactory for CompanyFactory.Data;
+    /** @dev TokenFactory library usage */
     using TokenFactory for CompanyFactory.Data;
 
-    CompanyFactory.Data private companyFactory;
-
+    /** Constants */
     uint8 public constant MAX_OWNER_COMPANIES = 3; // 1 owner could register up to 3 companies.
     uint8 public constant MAX_COMPANY_TOKENS = 5; // 1 company could register up to 5 tokens.
     address public constant EMPTY_ADDRESS = address(0);
 
+    /** State variables */
+    CompanyFactory.Data private companyFactory;
     bool internal stopped = false; // Circuit breaker
 
-    // Events
+    /** Events */
+    /** @dev 
+            KMPCompanyCreated event emitted every time a company is 
+            successfully created.
+        @param company new company created address.
+        @param name new company created name.
+        @param owner new company owner.address
+     */
     event KMPCompanyCreated(
         address company,
         string name,
         address indexed owner
     );
+    
+    /** @dev 
+            KMPTokenCreated event emitted every time a token is 
+            successfully created.
+        @param company token company address.
+        @param token new token created address.
+        @param name token name
+        @param symbol 3 chars token symbol
+        @param initialAmount token total supply.
+     */
     event KMPTokenCreated(
-        address indexed _company,
-        address indexed _token,
-        string _name,
-        string _symbol,
-        uint256 _initialAmount
+        address indexed company,
+        address indexed token,
+        string name,
+        string symbol,
+        uint256 initialAmount
     );
 
-    constructor() public Owned() {}
-
-    // Circuit breaker modifier
+    /** @dev Verify that circuit breaker is not active. */
     modifier stopInEmergency() {
         require(!stopped);
         _;
     }
 
+    /** @dev Verify caller is company owner */
     modifier onlyCompanyOwner(address companyOwner) {
         require(
             msg.sender == companyOwner,
@@ -48,19 +76,35 @@ contract Platform is Owned {
         _;
     }
 
+    /** @dev Platform contract owner is set on this constructor. */
+    constructor() public Owned() {}
+
+    /** @dev
+            This function lets users to create their company on the platform.
+        @param companyName name we will give to this company.
+        @param phone company's phone number.
+        @param url company's url.
+        @param did company uPort id (not used for now).
+        @param uPortAddress company uport Ethr address (not used for now).
+        @return the Company just created.
+     */
     function createCompany(
-        string calldata _companyName,
-        string calldata _phone,
-        string calldata _url,
-        string calldata _did,
-        address _uPortAddress
-    ) external stopInEmergency returns (Company) {
+        string calldata companyName,
+        string calldata phone,
+        string calldata url,
+        string calldata did,
+        address uPortAddress
+    ) 
+        external 
+        stopInEmergency 
+        returns (Company) 
+    {
         Company newCompany = companyFactory.createCompany(
-            _companyName,
-            _phone,
-            _url,
-            _did,
-            _uPortAddress
+            companyName,
+            phone,
+            url,
+            did,
+            uPortAddress
         );
         emit KMPCompanyCreated(
             address(newCompany),
@@ -70,102 +114,83 @@ contract Platform is Owned {
         return newCompany;
     }
 
+    /** @dev
+            This function lets users to create a token on one of their companies.
+        @param bcCompany address of the company that owns this token.
+        @param name token's name.
+        @param symbol token's 3 chars symbol.
+        @param initialAmount token total supply.
+        @return The instance of the token just created.
+     */
     function createTokenForCompany(
-        address _bcCompany,
-        string calldata _name,
-        string calldata _symbol,
-        uint256 _initialAmount
+        address bcCompany,
+        string calldata name,
+        string calldata symbol,
+        uint256 initialAmount
     )
         external
         stopInEmergency
-        onlyCompanyOwner(findCompanyOwner(_bcCompany))
+        onlyCompanyOwner(findCompanyOwner(bcCompany))
         returns (Token)
     {
         Token newToken = companyFactory.createTokenForCompany(
-            _bcCompany,
-            _name,
-            _symbol,
-            _initialAmount
+            bcCompany,
+            name,
+            symbol,
+            initialAmount
         );
         emit KMPTokenCreated(
-            _bcCompany,
+            bcCompany,
             address(newToken),
-            _name,
-            _symbol,
-            _initialAmount
+            name,
+            symbol,
+            initialAmount
         );
         return newToken;
     }
 
+    /** @dev Retrieves the balance of a user for an specific token on a company.
+        @param company the address of the company.
+        @param token the address of the token.
+        @param user the address of the user that owns this token.
+        @return uint256 with user's token balance. 
+     */
     function getUserTokenBalance(
-        address _company,
-        address _token,
-        address _user
+        address company,
+        address token,
+        address user
     )
         external
         view
-        onlyCompanyOwner(findCompanyOwner(_company))
+        onlyCompanyOwner(findCompanyOwner(company))
         returns (uint256 aBalance)
     {
         require(
-            EMPTY_ADDRESS != findCompanyToken(_company, _token),
+            EMPTY_ADDRESS != findCompanyToken(company, token),
             "Token not found."
         );
         bytes memory payload = abi.encodeWithSignature(
             "balanceOf(address)",
-            _user
+            user
         );
-        (bool result, bytes memory returnData) = _token.staticcall(payload);
+        (bool result, bytes memory returnData) = token.staticcall(payload);
         if (result) {
             aBalance = abi.decode(returnData, (uint256));
         }
         return aBalance;
     }
 
+    /** @dev This is a util function to expose the functionality of an internal
+            function. Only for development purposes. 
+        @notice remove this function before going to MAINNET.  
+        @param company company address to search for owner.
+        @return the owner's address or 0x if not found.
+     */
     function findCompanyOwnerUtil(address company) external view returns (address) {
-        // Util methods are for development purposes only.
         return findCompanyOwner(company);
     }
 
-    function findCompanyOwner(address aCompany) internal view returns (address) {
-        address[MAX_OWNER_COMPANIES] memory ownerCompanies = companyFactory.companies[msg.sender];
-        for (uint8 i = 0; i < MAX_OWNER_COMPANIES; i++) {
-            if (ownerCompanies[i] == aCompany) {
-                return Company(ownerCompanies[i]).owner();
-            }
-        }
-        return EMPTY_ADDRESS;
-    }
-
-    function tokenInCompany(address aCompany, address aToken)
-        public
-        view
-        returns (bool)
-    {
-        require(
-            msg.sender == findCompanyOwner(aCompany),
-            "Only company owner can search for tokens."
-        );
-        address[MAX_COMPANY_TOKENS] memory companyTokens = companyFactory.tokens[aCompany];
-        for (uint8 i = 0; i < MAX_COMPANY_TOKENS; i++) {
-            if (companyTokens[i] == aToken) {
-                return true; // Token found.
-            }
-        }
-        return false; // Token not found.
-    }
-
-    function findCompanyToken(address aCompany, address aToken)
-        public
-        view
-        returns (address)
-    {
-        if (tokenInCompany(aCompany, aToken)) {
-            return aToken;
-        }
-        return EMPTY_ADDRESS;
-    }
-
+    /** @dev Circuit breaker switch to pause this contract state changes. */
     function activateEmergency()
         external
         ownerOnly(msg.sender)
@@ -177,5 +202,55 @@ contract Platform is Owned {
             stopped = false;
         }
         return stopped;
+    }
+
+    /** @dev find a token into the tokens array corresponding to that company.
+        @param aCompany address of a company
+        @param aToken address of a token
+        @return true if found, false if not found.
+     */
+    function tokenInCompany(address aCompany, address aToken)
+        public
+        view
+        onlyCompanyOwner(findCompanyOwner(aCompany))
+        returns (bool)
+    {
+        address[MAX_COMPANY_TOKENS] memory companyTokens = companyFactory.tokens[aCompany];
+        for (uint8 i = 0; i < MAX_COMPANY_TOKENS; i++) {
+            if (companyTokens[i] == aToken) {
+                return true; // Token found.
+            }
+        }
+        return false; // Token not found.
+    }
+
+    /** @dev Look for a token inside a company list of tokens.
+        @param aCompany company address to search
+        @param aToken token address to search
+        @return token address if found, 0x if not found. 
+     */
+    function findCompanyToken(address aCompany, address aToken)
+        public
+        view
+        returns (address)
+    {
+        if (tokenInCompany(aCompany, aToken)) {
+            return aToken;
+        }
+        return EMPTY_ADDRESS;
+    }
+
+    /** @dev Look for the owner of the company received in the companies array. 
+        @param aCompany company address to search for owner.
+        @return the owner's address or 0x if not found.
+     */
+    function findCompanyOwner(address aCompany) private view returns (address) {
+        address[MAX_OWNER_COMPANIES] memory ownerCompanies = companyFactory.companies[msg.sender];
+        for (uint8 i = 0; i < MAX_OWNER_COMPANIES; i++) {
+            if (ownerCompanies[i] == aCompany) {
+                return Company(ownerCompanies[i]).owner();
+            }
+        }
+        return EMPTY_ADDRESS;
     }
 }

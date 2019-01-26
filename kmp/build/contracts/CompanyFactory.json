@@ -3743,12 +3743,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x35c4Fa8234E4d417Ee7d93bDbE7cfef9e2B62f3F",
-      "transactionHash": "0x380a91750595c755eddf2662018576e5bf2df3ac7cce302efc2bdd82caf29f13"
+      "address": "0x60AF2c459e53c5384a40D60a42A0c9b4EAc14AA4",
+      "transactionHash": "0xeaf96203413b7a38182988c63a7c4166a042ea2e4432ac2f72d5290bf21b81fc"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-26T02:06:45.105Z",
+  "updatedAt": "2019-01-26T04:19:52.144Z",
   "devdoc": {
     "methods": {}
   },
