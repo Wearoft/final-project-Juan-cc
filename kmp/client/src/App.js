@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import KMP from "./contracts/KMP.json";
-import KMToken from "./contracts/KMToken.json";
+import Platform from "./contracts/Platform.json";
+import Token from "./contracts/Token.json";
 import getWeb3 from "./utils/getWeb3";
 
 import "./App.css";
@@ -65,9 +65,9 @@ class App extends Component {
 
       // Get the contract companyInstance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = KMP.networks[networkId];
+      const deployedNetwork = Platform.networks[networkId];
       const kmpContractInstance = new web3.eth.Contract(
-        KMP.abi,
+        Platform.abi,
         deployedNetwork && deployedNetwork.address,
       );
 
@@ -149,7 +149,7 @@ class App extends Component {
     event.preventDefault();
     await this.handleAccountChange();
     const { accounts, kmpContract, companyName, phone, url, did, ethadd} = this.state;
-    const sendMethod = kmpContract.methods.createBCCompany(companyName, phone, url, did, ethadd);
+    const sendMethod = kmpContract.methods.createCompany(companyName, phone, url, did, ethadd);
     await sendMethod.send({from: accounts[0]})
     .once('receipt', (receipt) => {
       // receipt example
@@ -163,7 +163,7 @@ class App extends Component {
     event.preventDefault();
     await this.handleAccountChange();
     const { accounts, kmpContract, companyAddress, tokenName, symbol, totalSupply} = this.state;
-    const sendMethod = kmpContract.methods.createTokenForBCCompany(companyAddress, tokenName, symbol, totalSupply);
+    const sendMethod = kmpContract.methods.createTokenForCompany(companyAddress, tokenName, symbol, totalSupply);
     await sendMethod.send({from: accounts[0]})
     .once('receipt', (receipt) => {
       // receipt example
@@ -179,7 +179,7 @@ class App extends Component {
     const { accounts, web3, tokenAddress, destUser, amountToTransfer} = this.state;
     // Get the contract instance.
     const tokenContract = new web3.eth.Contract(
-      KMToken.abi,
+      Token.abi,
       tokenAddress
     );
     const sendMethod = tokenContract.methods.transfer(destUser, amountToTransfer);
@@ -224,7 +224,7 @@ class App extends Component {
     event.preventDefault();
     await this.handleAccountChange();
     const { accounts, kmpContract, companyAddress } = this.state;
-    const callMethod = kmpContract.methods.findBCownerUtil(companyAddress);
+    const callMethod = kmpContract.methods.findCompanyOwnerUtil(companyAddress);
     await callMethod.call({ from: accounts[0]})
     .then((receipt) => {
       console.log(receipt);
@@ -239,7 +239,7 @@ class App extends Component {
     event.preventDefault();
     await this.handleAccountChange();
     const { accounts, kmpContract, companyAddress, tokenAddress} = this.state;
-    const callMethod = kmpContract.methods.findBCToken(companyAddress, tokenAddress);
+    const callMethod = kmpContract.methods.findCompanyToken(companyAddress, tokenAddress);
     await callMethod.call({ from: accounts[0]})
     .then((receipt) => {
       console.log(receipt);
@@ -311,6 +311,7 @@ class App extends Component {
       console.log(receipt);
     });
   }
+  
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;

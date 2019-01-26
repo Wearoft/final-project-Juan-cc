@@ -1,11 +1,11 @@
-var KMToken = artifacts.require("./KMToken.sol");
+var Token = artifacts.require("./Token.sol");
 
 contract('KMToken', function(accounts) {
   
   let tokenInstance;
   
   beforeEach('setup contract for each test', async function () {
-    tokenInstance = await KMToken.deployed();
+    tokenInstance = await Token.deployed();
   });
 
   it("...should transfer 10 tokens.", async() => {

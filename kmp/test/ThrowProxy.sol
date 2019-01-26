@@ -5,7 +5,6 @@ contract ThrowProxy {
     address public target;
     bytes data;
 
-    
     constructor(address _target) public {
         target = _target;
     }
@@ -17,7 +16,7 @@ contract ThrowProxy {
     }
 
     function execute() public returns (bool) {
-        (bool result,) = address(target).call(data);
+        (bool result, ) = address(target).call(data);
         return result;
     }
 }

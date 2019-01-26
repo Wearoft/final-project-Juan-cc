@@ -6,12 +6,15 @@
     "solidity-coverage": "0.5.11"
   },
   "scripts": {
-    "coverage": "scripts/coverage.sh"
+    "coverage": "scripts/coverage.sh",
+    "prettier": "prettier --write **/*.sol"
   },
   "homepage": "https://github.com/Wearoft/final-project-Juan-cc",
   "devDependencies": {
     "truffle": "^5.0.0",
     "coveralls": "^3.0.2",
-    "truffle-hdwallet-provider": "1.0.2"
+    "truffle-hdwallet-provider": "1.0.2",
+    "prettier": "1.16.1",
+    "prettier-plugin-solidity": "1.0.0-alpha.18"
   }
 }
