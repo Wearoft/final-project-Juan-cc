@@ -1,6 +1,7 @@
 pragma solidity ^0.5.0;
 
 import "./Company.sol";
+import "./CompanyUtil.sol";
 
 /** @author Juan Castellon
     @title Library to create companies on the platform
@@ -72,21 +73,7 @@ library CompanyFactory {
         return newCompany;
     }
 
-    /** @dev Utility function to expose the functionality of 
-            nextCompanyAvailablePosition() for testing purposes.
-        @param self This function will receive the object (where the data is 
-                stored) they are called on as their first parameter.
-        @return next available position in the companies array.
-     */
-    function nextCompanyAvailablePositionUtil(Data storage self)
-        external
-        view
-        returns (uint8)
-    {
-        return nextCompanyAvailablePosition(self);
-    }
-
-    /** @dev Looks for the next available position in the companies array and 
+   /** @dev Looks for the next available position in the companies array and 
             returns that position.
         @param self This function will receive the object (where the data is 
                 stored) they are called on as their first parameter.
@@ -94,7 +81,7 @@ library CompanyFactory {
                 if no position available.
      */
     function nextCompanyAvailablePosition(Data storage self)
-        internal
+        public
         view
         returns (uint8)
     {
@@ -106,5 +93,4 @@ library CompanyFactory {
         }
         return MAX_OWNER_COMPANIES; // No empty spot available.
     }
-
 }

@@ -87,22 +87,6 @@ contract TestPlatform {
         Assert.equal(userBalance, 0, "User token balance incorrect");
     }
 
-    function testTokenInCompany() public {
-        bool result = kmp.tokenInCompany(address(bc), address(token));
-        Assert.isTrue(result, "Token not found.");
-        address nonExistentToken = 0xFC18Cbc391dE84dbd87dB83B20935D3e89F5dd91;
-        result = kmp.tokenInCompany(address(bc), address(nonExistentToken));
-        Assert.isFalse(result, "Non-Existent Token was found, but shouldn't.");
-    }
 
-    function testFindCompanyOwner() public {
-        address owner = kmp.findCompanyOwnerUtil(address(bc));
-        Assert.equal(owner, bc.owner(), "Company owner found not correct.");
-    }
-
-    function testFindCompanyOwnerNotFound() public {
-        address owner = kmp.findCompanyOwnerUtil(address(SOME_ADDRESS));
-        Assert.equal(owner, address(0), "We found an owner and we shouldn't.");
-    }
 
 }

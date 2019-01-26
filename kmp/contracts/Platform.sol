@@ -5,6 +5,8 @@ import "./Owned.sol";
 import "./Company.sol";
 import "./CompanyFactory.sol";
 import "./TokenFactory.sol";
+import "./CompanyUtil.sol";
+import "./TokenUtil.sol";
 
 
 /**
@@ -21,6 +23,10 @@ contract Platform is Owned {
     using CompanyFactory for CompanyFactory.Data;
     /** @dev TokenFactory library usage */
     using TokenFactory for CompanyFactory.Data;
+    /** @dev TokenUtil library usage */
+    using TokenUtil for CompanyFactory.Data;
+    /** @dev CompanyUtil library usage */
+    using CompanyUtil for CompanyFactory.Data;
 
     /** Constants */
     uint8 public constant MAX_OWNER_COMPANIES = 3; // 1 owner could register up to 3 companies.
@@ -90,6 +96,7 @@ contract Platform is Owned {
         @param did company uPort id (not used for now).
         @param uPortAddress company uport Ethr address (not used for now).
         @return the Company just created.
+        @notice emits KMPCompanyCreated event
      */
     function createCompany(
         string calldata companyName,
@@ -124,6 +131,7 @@ contract Platform is Owned {
         @param symbol token's 3 chars symbol.
         @param initialAmount token total supply.
         @return The instance of the token just created.
+        @notice emits KMPTokenCreated event
      */
     function createTokenForCompany(
         address bcCompany,
@@ -133,7 +141,7 @@ contract Platform is Owned {
     )
         external
         stopInEmergency
-        onlyCompanyOwner(findCompanyOwner(bcCompany))
+        onlyCompanyOwner(companyFactory.findCompanyOwner(bcCompany))
         returns (Token)
     {
         Token newToken = companyFactory.createTokenForCompany(
@@ -165,11 +173,11 @@ contract Platform is Owned {
     )
         external
         view
-        onlyCompanyOwner(findCompanyOwner(company))
+        onlyCompanyOwner(companyFactory.findCompanyOwner(company))
         returns (uint256 aBalance)
     {
         require(
-            EMPTY_ADDRESS != findCompanyToken(company, token),
+            EMPTY_ADDRESS != companyFactory.findCompanyToken(company, token),
             "Token not found."
         );
         bytes memory payload = abi.encodeWithSignature(
@@ -183,15 +191,6 @@ contract Platform is Owned {
         return aBalance;
     }
 
-    /** @dev This is a util function to expose the functionality of an internal
-            function. Only for development purposes. 
-        @notice remove this function before going to MAINNET.  
-        @param company company address to search for owner.
-        @return the owner's address or 0x if not found.
-     */
-    function findCompanyOwnerUtil(address company) external view returns (address) {
-        return findCompanyOwner(company);
-    }
 
     /** @dev Circuit breaker switch to pause this contract state changes or
             resume.
@@ -209,55 +208,4 @@ contract Platform is Owned {
         return stopped;
     }
 
-    /** @dev find a token into the tokens array corresponding to that company.
-        @param aCompany address of a company
-        @param aToken address of a token
-        @return true if found, false if not found.
-     */
-    function tokenInCompany(address aCompany, address aToken)
-        public
-        view
-        onlyCompanyOwner(findCompanyOwner(aCompany))
-        returns (bool)
-    {
-        address[MAX_COMPANY_TOKENS] memory companyTokens = companyFactory.tokens[aCompany];
-        for (uint8 i = 0; i < MAX_COMPANY_TOKENS; i++) {
-            if (companyTokens[i] == aToken) {
-                return true; // Token found.
-            }
-        }
-        return false; // Token not found.
-    }
-
-    /** @dev Look for a token inside a company list of tokens.
-        @param aCompany company address to search
-        @param aToken token address to search
-        @return token address if found, 0x if not found. 
-     */
-    function findCompanyToken(address aCompany, address aToken)
-        public
-        view
-        returns (address)
-    {
-        if (tokenInCompany(aCompany, aToken)) {
-            return aToken;
-        }
-        return EMPTY_ADDRESS;
-    }
-
-    /** @dev Look for the company on the companies array for this specific owner. 
-            If the company is found for this msg.sender then we return the owner,
-            in case the company is not found in the companies array 0x is returned.
-        @param aCompany company address to search for owner.
-        @return the owner's address or 0x if not found.
-     */
-    function findCompanyOwner(address aCompany) private view returns (address) {
-        address[MAX_OWNER_COMPANIES] memory ownerCompanies = companyFactory.companies[msg.sender];
-        for (uint8 i = 0; i < MAX_OWNER_COMPANIES; i++) {
-            if (ownerCompanies[i] == aCompany) {
-                return Company(ownerCompanies[i]).owner();
-            }
-        }
-        return EMPTY_ADDRESS;
-    }
 }

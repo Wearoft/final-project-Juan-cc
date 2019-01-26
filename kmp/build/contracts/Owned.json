@@ -1029,12 +1029,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x612216F6C233B04AccCdffE1a0F5de906477a56c",
-      "transactionHash": "0x4f2ce1925570d0dd8291e8130e59f15caa638a9c2c5950dae7433d82f4b29529"
+      "address": "0xAE4fb7e0C21D0e5b659017a21dC0Af959fa309c2",
+      "transactionHash": "0x25238c9ea08b816d8cdbb24bf6ea32e0ae6c4ac52df73e2b4eed25ca8bd63407"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-26T16:40:47.159Z",
+  "updatedAt": "2019-01-26T21:19:16.696Z",
   "devdoc": {
     "author": "Juan Castellon",
     "details": "This contract will be used to set the owner of a contract and to  validate that only the owner can execute certain action on the Platform. This was created before I realize there was an audited Ownable contract  from OpenZeppelin so I may use their implementation in the future. ",

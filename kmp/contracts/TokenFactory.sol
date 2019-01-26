@@ -3,6 +3,8 @@ pragma solidity ^0.5.0;
 import "./Company.sol";
 import "./Token.sol";
 import "./CompanyFactory.sol";
+import "./CompanyUtil.sol";
+import "./TokenUtil.sol";
 
 /** @author Juan Castellon
     @title Library to create tokens on the platform
@@ -52,10 +54,10 @@ library TokenFactory {
         uint256 initialAmount
     ) 
         external 
-        onlyCompanyOwner(findCompanyOwner(self, aCompany))
+        onlyCompanyOwner(CompanyUtil.findCompanyOwner(self, aCompany))
         returns (Token) 
     {
-        uint8 nextPosition = nextTokenAvailablePosition(
+        uint8 nextPosition = TokenUtil.nextTokenAvailablePosition(
             self,
             address(aCompany)
         );
@@ -72,75 +74,6 @@ library TokenFactory {
         );
         self.tokens[aCompany][nextPosition] = address(newToken);
         return newToken;
-    }
-
-    /** @dev This is a util function to expose the functionality of an internal
-            function. Only for development purposes. 
-        @notice remove this function before going to MAINNET.  
-        @param self This function will receive the object (where the data is 
-                stored) they are called on as their first parameter.
-        @param aCompany address of the company to search owner.
-        @return address of the company owner, or 0x if not found.
-     */
-    function findCompanyownerUtil(
-        CompanyFactory.Data storage self,
-        address aCompany
-    ) 
-        external 
-        view 
-        returns (address) 
-    {
-        return findCompanyOwner(self, aCompany);
-    }
-
-
-    /** @dev Look for the company on the companies array for this specific owner. 
-            If the company is found for this msg.sender then we return the owner,
-            in case the company is not found in the companies array 0x is returned.
-        @param aCompany company address to search for owner.
-        @return the owner's address or 0x if not found.
-     */
-    function findCompanyOwner(CompanyFactory.Data storage self, address aCompany)
-        internal
-        view
-        returns (address)
-    {
-        address[MAX_OWNER_COMPANIES] memory ownerCompanies = self.companies[msg.sender];
-        for (uint8 i = 0; i < MAX_OWNER_COMPANIES; i++) {
-            if (ownerCompanies[i] == aCompany) {
-                return Company(ownerCompanies[i]).owner();
-            }
-        }
-        return EMPTY_ADDRESS;
-    }
-
-    /** @dev First it validates that only the company owner is who is calling
-            this function. If it is the owner then it looks for the next 
-            available position in the tokens array for this specific company and
-            returns that position.
-        @param self This function will receive the object (where the data is 
-                stored) they are called on as their first parameter.
-        @param aCompany company address to search for available positions in 
-                the tokens array.
-        @return next available position in the tokens array or MAX_COMPANY_TOKENS
-                if no position available.
-     */
-    function nextTokenAvailablePosition(
-        CompanyFactory.Data storage self,
-        address aCompany
-    ) 
-        internal 
-        view 
-        onlyCompanyOwner(findCompanyOwner(self, aCompany))
-        returns (uint8) 
-    {
-        address[MAX_COMPANY_TOKENS] memory companyTokens = self.tokens[aCompany];
-        for (uint8 i = 0; i < MAX_COMPANY_TOKENS; i++) {
-            if (companyTokens[i] == EMPTY_ADDRESS) {
-                return i; // first position available.
-            }
-        }
-        return MAX_COMPANY_TOKENS; // No empty spot available.
     }
 
 }

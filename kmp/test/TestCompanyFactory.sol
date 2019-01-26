@@ -6,24 +6,21 @@ import "../contracts/CompanyFactory.sol";
 import "../contracts/Platform.sol";
 
 contract TestCompanyFactory {
+    using CompanyFactory for CompanyFactory.Data;
     CompanyFactory.Data private data;
 
     // Global variables
-    CompanyFactory private factory;
     Platform private kmp;
 
     // Global constants
     address constant SOME_ADDRESS = 0xdA35deE8EDDeAA556e4c26268463e26FB91ff74f;
 
     function beforeAll() public {
-        factory = CompanyFactory(DeployedAddresses.CompanyFactory());
         kmp = Platform(DeployedAddresses.Platform());
     }
 
     function testNextCompanyAvailablePositionEmpty() public {
-        uint256 position = CompanyFactory.nextCompanyAvailablePositionUtil(
-            data
-        );
+        uint256 position = data.nextCompanyAvailablePosition();
         Assert.isZero(
             position,
             "The first position available should be Zero."
@@ -32,8 +29,7 @@ contract TestCompanyFactory {
 
     function testCreateCompany() public {
         string memory companyName = "Some  Name";
-        Company newBc = CompanyFactory.createCompany(
-            data,
+        Company newBc = data.createCompany(
             companyName,
             "123456789",
             "www.google.com",
@@ -41,24 +37,19 @@ contract TestCompanyFactory {
             SOME_ADDRESS
         );
         Assert.equal(newBc.name(), companyName, "Company name is incorrect.");
-        uint256 position = CompanyFactory.nextCompanyAvailablePositionUtil(
-            data
-        );
+        uint256 position = data.nextCompanyAvailablePosition();
         Assert.equal(position, 1, "The first position available should be 1.");
     }
 
     function testNextCompanyAvailablePosition1() public {
-        uint256 position = CompanyFactory.nextCompanyAvailablePositionUtil(
-            data
-        );
+        uint256 position = data.nextCompanyAvailablePosition();
         Assert.equal(position, 1, "We should be in position 1.");
 
     }
 
     function testCompleteCompanyArray() public {
         for (uint8 i = 0; i < kmp.MAX_OWNER_COMPANIES() - 1; i++) {
-            CompanyFactory.createCompany(
-                data,
+            data.createCompany(
                 "Some  Name",
                 string(abi.encode(i)),
                 "www.google.com",
@@ -69,9 +60,7 @@ contract TestCompanyFactory {
     }
 
     function testNextCompanyAvailablePositionMAX() public {
-        uint256 position = CompanyFactory.nextCompanyAvailablePositionUtil(
-            data
-        );
+        uint256 position = data.nextCompanyAvailablePosition();
         Assert.equal(
             position,
             kmp.MAX_OWNER_COMPANIES(),
