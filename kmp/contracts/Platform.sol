@@ -10,12 +10,13 @@ import "./TokenFactory.sol";
 /**
     @author Juan Castellon
     @title Platform main contract to expose functionality to users.
-    @notice 
-        Platform contract will allow  KMP Platform users to create 
-        their own company and create their own tokens. 
+    @dev Platform contract will allow  KMP Platform users to create 
+        their own company and create their own tokens and persist
+        the data in the Blockchain. 
  */
 contract Platform is Owned {
 
+    /** Libraries */
     /** @dev CompanyFactory library usage */
     using CompanyFactory for CompanyFactory.Data;
     /** @dev TokenFactory library usage */
@@ -61,6 +62,7 @@ contract Platform is Owned {
         uint256 initialAmount
     );
 
+    /** Modifiers */
     /** @dev Verify that circuit breaker is not active. */
     modifier stopInEmergency() {
         require(!stopped);
@@ -76,11 +78,12 @@ contract Platform is Owned {
         _;
     }
 
+    /** Constructors */
     /** @dev Platform contract owner is set on this constructor. */
     constructor() public Owned() {}
 
-    /** @dev
-            This function lets users to create their company on the platform.
+    /** Functions */
+    /** @dev This function lets users to create their company on the platform.
         @param companyName name we will give to this company.
         @param phone company's phone number.
         @param url company's url.
@@ -114,8 +117,8 @@ contract Platform is Owned {
         return newCompany;
     }
 
-    /** @dev
-            This function lets users to create a token on one of their companies.
+    /** @dev This function lets users to create a token on one of their
+            companies.
         @param bcCompany address of the company that owns this token.
         @param name token's name.
         @param symbol token's 3 chars symbol.
@@ -190,7 +193,9 @@ contract Platform is Owned {
         return findCompanyOwner(company);
     }
 
-    /** @dev Circuit breaker switch to pause this contract state changes. */
+    /** @dev Circuit breaker switch to pause this contract state changes or
+            resume.
+     */
     function activateEmergency()
         external
         ownerOnly(msg.sender)
@@ -240,7 +245,9 @@ contract Platform is Owned {
         return EMPTY_ADDRESS;
     }
 
-    /** @dev Look for the owner of the company received in the companies array. 
+    /** @dev Look for the company on the companies array for this specific owner. 
+            If the company is found for this msg.sender then we return the owner,
+            in case the company is not found in the companies array 0x is returned.
         @param aCompany company address to search for owner.
         @return the owner's address or 0x if not found.
      */

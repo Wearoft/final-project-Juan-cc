@@ -79,12 +79,12 @@ class App extends Component {
 
       for (var i = 0; i < companyEventsList.length; i++){
         const aCompanyAddress = companyEventsList[i].returnValues['company'];
-        const tokenEventFilter = { filter:{_company: aCompanyAddress}, fromBlock: 0, toBlock: 'latest'};
+        const tokenEventFilter = { filter:{company: aCompanyAddress}, fromBlock: 0, toBlock: 'latest'};
         // Getting PAST token events
         const tokenEventsList = await kmpContractInstance.getPastEvents('KMPTokenCreated', tokenEventFilter);
         newTokenList[i]=[];
         for (var j = 0; j < tokenEventsList.length; j++){
-          newTokenList[i][j] = tokenEventsList[j].returnValues['_token'];
+          newTokenList[i][j] = tokenEventsList[j].returnValues['token'];
     
         }
         allCompaniesCreatedByUser[i] = aCompanyAddress;
@@ -121,7 +121,7 @@ class App extends Component {
           });
         } else if (evento.event === "KMPTokenCreated"){
           const {companySelected, tokensList, tokenCounter} = this.state;
-          const newToken = evento.returnValues['_token'];
+          const newToken = evento.returnValues['token'];
           var newTokenList = tokensList;
           newTokenList[companySelected][tokensList[companySelected].length] = newToken;
           this.setState({ 
@@ -192,7 +192,7 @@ class App extends Component {
     })
     .then((receipt) => {
       console.log(receipt);
-      //receipt.events.KMPTokenCreated.returnValues['_token']
+      //receipt.events.KMPTokenCreated.returnValues['token']
       this.setState({
         transferResult: receipt.events.Transfer.returnValues.value
       })
