@@ -10,3 +10,9 @@ kmp/client/package-lock\.json
 kmp/package-lock\.json
 
 kmp/build/contracts/contracts
+
+kmp/coverage/*
+
+kmp/coverage/
+
+kmp/coverage\.json

@@ -71,11 +71,11 @@
       "signature": "0xf5612fc3"
     }
   ],
-  "bytecode": "0x6102dc610030600b82828239805160001a6073146000811461002057610022565bfe5b5030600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106100785763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166338abeb43811461007d5780634642e0ba1461009b578063eb39c3af146100a3578063f5612fc3146100d4575b600080fd5b61008561010d565b6040805160ff9092168252519081900360200190f35b610085610112565b6100ab610117565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100ab600480360360408110156100ea57600080fd5b508035906020013573ffffffffffffffffffffffffffffffffffffffff1661011c565b600581565b600381565b600081565b6000610126610291565b3360009081526020859052604090819020815160608101928390529160039082845b815473ffffffffffffffffffffffffffffffffffffffff1681526001909101906020018083116101485750939450600093505050505b600360ff821610156102845773ffffffffffffffffffffffffffffffffffffffff84168260ff8316600381106101b057fe5b602002015173ffffffffffffffffffffffffffffffffffffffff16141561027c578160ff8216600381106101e057fe5b602002015173ffffffffffffffffffffffffffffffffffffffff16638da5cb5b6040518163ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040160206040518083038186803b15801561024657600080fd5b505afa15801561025a573d6000803e3d6000fd5b505050506040513d602081101561027057600080fd5b5051925061028b915050565b60010161017e565b5060009150505b92915050565b606060405190810160405280600390602082028038833950919291505056fea165627a7a72305820a235ab53e2283b60fc5cd9893156580c8f5b1d1ac8bd15b0fb82262947d85a810029",
-  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600436106100785763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166338abeb43811461007d5780634642e0ba1461009b578063eb39c3af146100a3578063f5612fc3146100d4575b600080fd5b61008561010d565b6040805160ff9092168252519081900360200190f35b610085610112565b6100ab610117565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100ab600480360360408110156100ea57600080fd5b508035906020013573ffffffffffffffffffffffffffffffffffffffff1661011c565b600581565b600381565b600081565b6000610126610291565b3360009081526020859052604090819020815160608101928390529160039082845b815473ffffffffffffffffffffffffffffffffffffffff1681526001909101906020018083116101485750939450600093505050505b600360ff821610156102845773ffffffffffffffffffffffffffffffffffffffff84168260ff8316600381106101b057fe5b602002015173ffffffffffffffffffffffffffffffffffffffff16141561027c578160ff8216600381106101e057fe5b602002015173ffffffffffffffffffffffffffffffffffffffff16638da5cb5b6040518163ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040160206040518083038186803b15801561024657600080fd5b505afa15801561025a573d6000803e3d6000fd5b505050506040513d602081101561027057600080fd5b5051925061028b915050565b60010161017e565b5060009150505b92915050565b606060405190810160405280600390602082028038833950919291505056fea165627a7a72305820a235ab53e2283b60fc5cd9893156580c8f5b1d1ac8bd15b0fb82262947d85a810029",
-  "sourceMap": "569:1081:6:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
-  "deployedSourceMap": "569:1081:6:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;712:44;;;;;;;;;;;;;;;;;;;;;;;616:45;;;;806:50;;;;;;;;;;;;;;;;;;;;;;;1223:424;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1223:424:6;;;;;;;;;;712:44;755:1;712:44;:::o;616:45::-;660:1;616:45;:::o;806:50::-;854:1;806:50;:::o;1223:424::-;1322:7;1341:50;;:::i;:::-;1409:10;1394:14;:26;;;;;;;;;;;;1341:79;;;;;;;;;;;;1394:26;1341:79;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1341:79:6;;-1:-1:-1;1435:7:6;;-1:-1:-1;;;;1430:181:6;660:1;1448:23;;;;1430:181;;;1496:29;;;:14;:17;;;;;;;;;;;;;;:29;;;1492:109;;;1560:14;:17;;;;;;;;;;;;;;1552:32;;;:34;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1552:34:6;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1552:34:6;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1552:34:6;;-1:-1:-1;1545:41:6;;-1:-1:-1;;1545:41:6;1492:109;1473:3;;1430:181;;;;854:1;1620:20;;;1223:424;;;;;:::o;569:1081::-;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;-1:-1;569:1081:6;;;-1:-1:-1;;569:1081:6:o",
-  "source": "pragma solidity ^0.5.0;\n\nimport \"./Company.sol\";\nimport \"./CompanyFactory.sol\";\n\n/** @author Juan Castellon\n    @title Library to create companies on the platform\n    @dev CompanyFactory is a factory pattern implemented via a Library, that \n        will be used to create new companies. It will basically conglomerate all\n        the logic related to companies creation and it's business rules. \n        At the moment creates instances for every request without any \n        validation, but the plan is to add all business rules here to create \n        companies. \n */\nlibrary CompanyUtil {\n    /** Constants */\n    uint8 public constant MAX_OWNER_COMPANIES = 3; // 1 owner could register up to 3 companies.\n    uint8 public constant MAX_COMPANY_TOKENS = 5; // 1 company could register up to 5 tokens.\n    address public constant EMPTY_ADDRESS = address(0);\n\n\n\n    /** @dev Look for the company on the companies array for this specific owner. \n        If the company is found for this msg.sender then we return the owner,\n        in case the company is not found in the companies array 0x is returned.\n    @param aCompany company address to search for owner.\n    @return the owner's address or 0x if not found.\n     */\n    function findCompanyOwner(CompanyFactory.Data storage self, address aCompany) public view returns (address) {\n        address[MAX_OWNER_COMPANIES] memory ownerCompanies = self.companies[msg.sender];\n        for (uint8 i = 0; i < MAX_OWNER_COMPANIES; i++) {\n            if (ownerCompanies[i] == aCompany) {\n                return Company(ownerCompanies[i]).owner();\n            }\n        }\n        return EMPTY_ADDRESS;\n    }\n\n}\n",
+  "bytecode": "0x6102dc610030600b82828239805160001a6073146000811461002057610022565bfe5b5030600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600436106100785763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166338abeb43811461007d5780634642e0ba1461009b578063eb39c3af146100a3578063f5612fc3146100d4575b600080fd5b61008561010d565b6040805160ff9092168252519081900360200190f35b610085610112565b6100ab610117565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100ab600480360360408110156100ea57600080fd5b508035906020013573ffffffffffffffffffffffffffffffffffffffff1661011c565b600581565b600381565b600081565b6000610126610291565b3360009081526020859052604090819020815160608101928390529160039082845b815473ffffffffffffffffffffffffffffffffffffffff1681526001909101906020018083116101485750939450600093505050505b600360ff821610156102845773ffffffffffffffffffffffffffffffffffffffff84168260ff8316600381106101b057fe5b602002015173ffffffffffffffffffffffffffffffffffffffff16141561027c578160ff8216600381106101e057fe5b602002015173ffffffffffffffffffffffffffffffffffffffff16638da5cb5b6040518163ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040160206040518083038186803b15801561024657600080fd5b505afa15801561025a573d6000803e3d6000fd5b505050506040513d602081101561027057600080fd5b5051925061028b915050565b60010161017e565b5060009150505b92915050565b606060405190810160405280600390602082028038833950919291505056fea165627a7a723058208cec26dcfdd7684b2a2e18f7c331c673e2b01ba96b31ae3c73b87ff88edd231d0029",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600436106100785763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166338abeb43811461007d5780634642e0ba1461009b578063eb39c3af146100a3578063f5612fc3146100d4575b600080fd5b61008561010d565b6040805160ff9092168252519081900360200190f35b610085610112565b6100ab610117565b6040805173ffffffffffffffffffffffffffffffffffffffff9092168252519081900360200190f35b6100ab600480360360408110156100ea57600080fd5b508035906020013573ffffffffffffffffffffffffffffffffffffffff1661011c565b600581565b600381565b600081565b6000610126610291565b3360009081526020859052604090819020815160608101928390529160039082845b815473ffffffffffffffffffffffffffffffffffffffff1681526001909101906020018083116101485750939450600093505050505b600360ff821610156102845773ffffffffffffffffffffffffffffffffffffffff84168260ff8316600381106101b057fe5b602002015173ffffffffffffffffffffffffffffffffffffffff16141561027c578160ff8216600381106101e057fe5b602002015173ffffffffffffffffffffffffffffffffffffffff16638da5cb5b6040518163ffffffff167c010000000000000000000000000000000000000000000000000000000002815260040160206040518083038186803b15801561024657600080fd5b505afa15801561025a573d6000803e3d6000fd5b505050506040513d602081101561027057600080fd5b5051925061028b915050565b60010161017e565b5060009150505b92915050565b606060405190810160405280600390602082028038833950919291505056fea165627a7a723058208cec26dcfdd7684b2a2e18f7c331c673e2b01ba96b31ae3c73b87ff88edd231d0029",
+  "sourceMap": "569:1236:6:-;;132:2:-1;166:7;155:9;146:7;137:37;252:7;246:14;243:1;238:23;232:4;229:33;270:1;265:20;;;;222:63;;265:20;274:9;222:63;;298:9;295:1;288:20;328:4;319:7;311:22;352:7;343;336:24",
+  "deployedSourceMap": "569:1236:6:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;712:44;;;;;;;;;;;;;;;;;;;;;;;616:45;;;;806:50;;;;;;;;;;;;;;;;;;;;;;;1378:424;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1378:424:6;;;;;;;;;;712:44;755:1;712:44;:::o;616:45::-;660:1;616:45;:::o;806:50::-;854:1;806:50;:::o;1378:424::-;1477:7;1496:50;;:::i;:::-;1564:10;1549:14;:26;;;;;;;;;;;;1496:79;;;;;;;;;;;;1549:26;1496:79;;;;;;;;;;;;;;;;;;;;-1:-1:-1;1496:79:6;;-1:-1:-1;1590:7:6;;-1:-1:-1;;;;1585:181:6;660:1;1603:23;;;;1585:181;;;1651:29;;;:14;:17;;;;;;;;;;;;;;:29;;;1647:109;;;1715:14;:17;;;;;;;;;;;;;;1707:32;;;:34;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1707:34:6;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1707:34:6;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1707:34:6;;-1:-1:-1;1700:41:6;;-1:-1:-1;;1700:41:6;1647:109;1628:3;;1585:181;;;;854:1;1775:20;;;1378:424;;;;;:::o;569:1236::-;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;-1:-1;569:1236:6;;;-1:-1:-1;;569:1236:6:o",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"./Company.sol\";\nimport \"./CompanyFactory.sol\";\n\n/** @author Juan Castellon\n    @title Library to create companies on the platform\n    @dev CompanyFactory is a factory pattern implemented via a Library, that \n        will be used to create new companies. It will basically conglomerate all\n        the logic related to companies creation and it's business rules. \n        At the moment creates instances for every request without any \n        validation, but the plan is to add all business rules here to create \n        companies. \n */\nlibrary CompanyUtil {\n    /** Constants */\n    uint8 public constant MAX_OWNER_COMPANIES = 3; // 1 owner could register up to 3 companies.\n    uint8 public constant MAX_COMPANY_TOKENS = 5; // 1 company could register up to 5 tokens.\n    address public constant EMPTY_ADDRESS = address(0);\n\n\n\n    /** @dev Look for the company on the companies array for this specific owner. \n        If the company is found for this msg.sender then we return the owner,\n        in case the company is not found in the companies array 0x is returned.\n        @param self This function will receive the object (where the data is \n                stored) they are called on as their first parameter.\n        @param aCompany company address to search for owner.\n        @return the owner's address or 0x if not found.\n     */\n    function findCompanyOwner(CompanyFactory.Data storage self, address aCompany) public view returns (address) {\n        address[MAX_OWNER_COMPANIES] memory ownerCompanies = self.companies[msg.sender];\n        for (uint8 i = 0; i < MAX_OWNER_COMPANIES; i++) {\n            if (ownerCompanies[i] == aCompany) {\n                return Company(ownerCompanies[i]).owner();\n            }\n        }\n        return EMPTY_ADDRESS;\n    }\n\n}\n",
   "sourcePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/contracts/CompanyUtil.sol",
   "ast": {
     "absolutePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/contracts/CompanyUtil.sol",
@@ -305,7 +305,7 @@
             "body": {
               "id": 983,
               "nodeType": "Block",
-              "src": "1331:316:6",
+              "src": "1486:316:6",
               "statements": [
                 {
                   "assignments": [
@@ -318,7 +318,7 @@
                       "name": "ownerCompanies",
                       "nodeType": "VariableDeclaration",
                       "scope": 983,
-                      "src": "1341:50:6",
+                      "src": "1496:50:6",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
@@ -330,7 +330,7 @@
                           "id": 945,
                           "name": "address",
                           "nodeType": "ElementaryTypeName",
-                          "src": "1341:7:6",
+                          "src": "1496:7:6",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -344,14 +344,14 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 926,
-                          "src": "1349:19:6",
+                          "src": "1504:19:6",
                           "typeDescriptions": {
                             "typeIdentifier": null,
                             "typeString": null
                           }
                         },
                         "nodeType": "ArrayTypeName",
-                        "src": "1341:28:6",
+                        "src": "1496:28:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$3_storage_ptr",
                           "typeString": "address[3]"
@@ -373,7 +373,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 936,
-                        "src": "1394:4:6",
+                        "src": "1549:4:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_struct$_Data_$817_storage_ptr",
                           "typeString": "struct CompanyFactory.Data storage pointer"
@@ -387,7 +387,7 @@
                       "memberName": "companies",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": 810,
-                      "src": "1394:14:6",
+                      "src": "1549:14:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$3_storage_$",
                         "typeString": "mapping(address => address[3] storage ref)"
@@ -402,8 +402,8 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1675,
-                        "src": "1409:3:6",
+                        "referencedDeclaration": 1747,
+                        "src": "1564:3:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
@@ -417,7 +417,7 @@
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "1409:10:6",
+                      "src": "1564:10:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
                         "typeString": "address payable"
@@ -428,20 +428,20 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "1394:26:6",
+                    "src": "1549:26:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$3_storage",
                       "typeString": "address[3] storage ref"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1341:79:6"
+                  "src": "1496:79:6"
                 },
                 {
                   "body": {
                     "id": 979,
                     "nodeType": "Block",
-                    "src": "1478:133:6",
+                    "src": "1633:133:6",
                     "statements": [
                       {
                         "condition": {
@@ -464,7 +464,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 947,
-                              "src": "1496:14:6",
+                              "src": "1651:14:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_address_$3_memory_ptr",
                                 "typeString": "address[3] memory"
@@ -478,7 +478,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 955,
-                              "src": "1511:1:6",
+                              "src": "1666:1:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint8",
                                 "typeString": "uint8"
@@ -489,7 +489,7 @@
                             "isPure": false,
                             "lValueRequested": false,
                             "nodeType": "IndexAccess",
-                            "src": "1496:17:6",
+                            "src": "1651:17:6",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -504,13 +504,13 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 938,
-                            "src": "1517:8:6",
+                            "src": "1672:8:6",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
                             }
                           },
-                          "src": "1496:29:6",
+                          "src": "1651:29:6",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -519,11 +519,11 @@
                         "falseBody": null,
                         "id": 978,
                         "nodeType": "IfStatement",
-                        "src": "1492:109:6",
+                        "src": "1647:109:6",
                         "trueBody": {
                           "id": 977,
                           "nodeType": "Block",
-                          "src": "1527:74:6",
+                          "src": "1682:74:6",
                           "statements": [
                             {
                               "expression": {
@@ -543,7 +543,7 @@
                                           "nodeType": "Identifier",
                                           "overloadedDeclarations": [],
                                           "referencedDeclaration": 947,
-                                          "src": "1560:14:6",
+                                          "src": "1715:14:6",
                                           "typeDescriptions": {
                                             "typeIdentifier": "t_array$_t_address_$3_memory_ptr",
                                             "typeString": "address[3] memory"
@@ -557,7 +557,7 @@
                                           "nodeType": "Identifier",
                                           "overloadedDeclarations": [],
                                           "referencedDeclaration": 955,
-                                          "src": "1575:1:6",
+                                          "src": "1730:1:6",
                                           "typeDescriptions": {
                                             "typeIdentifier": "t_uint8",
                                             "typeString": "uint8"
@@ -568,7 +568,7 @@
                                         "isPure": false,
                                         "lValueRequested": false,
                                         "nodeType": "IndexAccess",
-                                        "src": "1560:17:6",
+                                        "src": "1715:17:6",
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_address",
                                           "typeString": "address"
@@ -587,7 +587,7 @@
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
                                       "referencedDeclaration": 789,
-                                      "src": "1552:7:6",
+                                      "src": "1707:7:6",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_type$_t_contract$_Company_$789_$",
                                         "typeString": "type(contract Company)"
@@ -601,7 +601,7 @@
                                     "lValueRequested": false,
                                     "names": [],
                                     "nodeType": "FunctionCall",
-                                    "src": "1552:26:6",
+                                    "src": "1707:26:6",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_contract$_Company_$789",
                                       "typeString": "contract Company"
@@ -615,7 +615,7 @@
                                   "memberName": "owner",
                                   "nodeType": "MemberAccess",
                                   "referencedDeclaration": 1046,
-                                  "src": "1552:32:6",
+                                  "src": "1707:32:6",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
                                     "typeString": "function () view external returns (address)"
@@ -629,7 +629,7 @@
                                 "lValueRequested": false,
                                 "names": [],
                                 "nodeType": "FunctionCall",
-                                "src": "1552:34:6",
+                                "src": "1707:34:6",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_address",
                                   "typeString": "address"
@@ -638,7 +638,7 @@
                               "functionReturnParameters": 942,
                               "id": 976,
                               "nodeType": "Return",
-                              "src": "1545:41:6"
+                              "src": "1700:41:6"
                             }
                           ]
                         }
@@ -663,7 +663,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 955,
-                      "src": "1448:1:6",
+                      "src": "1603:1:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
@@ -678,13 +678,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 926,
-                      "src": "1452:19:6",
+                      "src": "1607:19:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
                     },
-                    "src": "1448:23:6",
+                    "src": "1603:23:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -702,7 +702,7 @@
                         "name": "i",
                         "nodeType": "VariableDeclaration",
                         "scope": 980,
-                        "src": "1435:7:6",
+                        "src": "1590:7:6",
                         "stateVariable": false,
                         "storageLocation": "default",
                         "typeDescriptions": {
@@ -713,7 +713,7 @@
                           "id": 954,
                           "name": "uint8",
                           "nodeType": "ElementaryTypeName",
-                          "src": "1435:5:6",
+                          "src": "1590:5:6",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint8",
                             "typeString": "uint8"
@@ -734,7 +734,7 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1445:1:6",
+                      "src": "1600:1:6",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
@@ -743,7 +743,7 @@
                       "value": "0"
                     },
                     "nodeType": "VariableDeclarationStatement",
-                    "src": "1435:11:6"
+                    "src": "1590:11:6"
                   },
                   "loopExpression": {
                     "expression": {
@@ -756,7 +756,7 @@
                       "nodeType": "UnaryOperation",
                       "operator": "++",
                       "prefix": false,
-                      "src": "1473:3:6",
+                      "src": "1628:3:6",
                       "subExpression": {
                         "argumentTypes": null,
                         "id": 961,
@@ -764,7 +764,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 955,
-                        "src": "1473:1:6",
+                        "src": "1628:1:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint8",
                           "typeString": "uint8"
@@ -777,10 +777,10 @@
                     },
                     "id": 963,
                     "nodeType": "ExpressionStatement",
-                    "src": "1473:3:6"
+                    "src": "1628:3:6"
                   },
                   "nodeType": "ForStatement",
-                  "src": "1430:181:6"
+                  "src": "1585:181:6"
                 },
                 {
                   "expression": {
@@ -790,7 +790,7 @@
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 934,
-                    "src": "1627:13:6",
+                    "src": "1782:13:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -799,11 +799,11 @@
                   "functionReturnParameters": 942,
                   "id": 982,
                   "nodeType": "Return",
-                  "src": "1620:20:6"
+                  "src": "1775:20:6"
                 }
               ]
             },
-            "documentation": "@dev Look for the company on the companies array for this specific owner. \nIf the company is found for this msg.sender then we return the owner,\nin case the company is not found in the companies array 0x is returned.\n@param aCompany company address to search for owner.\n@return the owner's address or 0x if not found.",
+            "documentation": "@dev Look for the company on the companies array for this specific owner. \nIf the company is found for this msg.sender then we return the owner,\nin case the company is not found in the companies array 0x is returned.\n@param self This function will receive the object (where the data is \nstored) they are called on as their first parameter.\n@param aCompany company address to search for owner.\n@return the owner's address or 0x if not found.",
             "id": 984,
             "implemented": true,
             "kind": "function",
@@ -820,7 +820,7 @@
                   "name": "self",
                   "nodeType": "VariableDeclaration",
                   "scope": 984,
-                  "src": "1249:32:6",
+                  "src": "1404:32:6",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
@@ -833,7 +833,7 @@
                     "name": "CompanyFactory.Data",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 817,
-                    "src": "1249:19:6",
+                    "src": "1404:19:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_Data_$817_storage_ptr",
                       "typeString": "struct CompanyFactory.Data"
@@ -848,7 +848,7 @@
                   "name": "aCompany",
                   "nodeType": "VariableDeclaration",
                   "scope": 984,
-                  "src": "1283:16:6",
+                  "src": "1438:16:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -859,7 +859,7 @@
                     "id": 937,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1283:7:6",
+                    "src": "1438:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -870,7 +870,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1248:52:6"
+              "src": "1403:52:6"
             },
             "returnParameters": {
               "id": 942,
@@ -882,7 +882,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 984,
-                  "src": "1322:7:6",
+                  "src": "1477:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -893,7 +893,7 @@
                     "id": 940,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1322:7:6",
+                    "src": "1477:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -904,20 +904,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1321:9:6"
+              "src": "1476:9:6"
             },
             "scope": 985,
-            "src": "1223:424:6",
+            "src": "1378:424:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 986,
-        "src": "569:1081:6"
+        "src": "569:1236:6"
       }
     ],
-    "src": "0:1651:6"
+    "src": "0:1806:6"
   },
   "legacyAST": {
     "absolutePath": "/home/juan/consensys/final/final-project-Juan-cc/kmp/contracts/CompanyUtil.sol",
@@ -1147,7 +1147,7 @@
             "body": {
               "id": 983,
               "nodeType": "Block",
-              "src": "1331:316:6",
+              "src": "1486:316:6",
               "statements": [
                 {
                   "assignments": [
@@ -1160,7 +1160,7 @@
                       "name": "ownerCompanies",
                       "nodeType": "VariableDeclaration",
                       "scope": 983,
-                      "src": "1341:50:6",
+                      "src": "1496:50:6",
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "typeDescriptions": {
@@ -1172,7 +1172,7 @@
                           "id": 945,
                           "name": "address",
                           "nodeType": "ElementaryTypeName",
-                          "src": "1341:7:6",
+                          "src": "1496:7:6",
                           "typeDescriptions": {
                             "typeIdentifier": "t_address",
                             "typeString": "address"
@@ -1186,14 +1186,14 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 926,
-                          "src": "1349:19:6",
+                          "src": "1504:19:6",
                           "typeDescriptions": {
                             "typeIdentifier": null,
                             "typeString": null
                           }
                         },
                         "nodeType": "ArrayTypeName",
-                        "src": "1341:28:6",
+                        "src": "1496:28:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$3_storage_ptr",
                           "typeString": "address[3]"
@@ -1215,7 +1215,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 936,
-                        "src": "1394:4:6",
+                        "src": "1549:4:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_struct$_Data_$817_storage_ptr",
                           "typeString": "struct CompanyFactory.Data storage pointer"
@@ -1229,7 +1229,7 @@
                       "memberName": "companies",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": 810,
-                      "src": "1394:14:6",
+                      "src": "1549:14:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_address_$3_storage_$",
                         "typeString": "mapping(address => address[3] storage ref)"
@@ -1244,8 +1244,8 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1675,
-                        "src": "1409:3:6",
+                        "referencedDeclaration": 1747,
+                        "src": "1564:3:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
                           "typeString": "msg"
@@ -1259,7 +1259,7 @@
                       "memberName": "sender",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": null,
-                      "src": "1409:10:6",
+                      "src": "1564:10:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address_payable",
                         "typeString": "address payable"
@@ -1270,20 +1270,20 @@
                     "isPure": false,
                     "lValueRequested": false,
                     "nodeType": "IndexAccess",
-                    "src": "1394:26:6",
+                    "src": "1549:26:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_address_$3_storage",
                       "typeString": "address[3] storage ref"
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "1341:79:6"
+                  "src": "1496:79:6"
                 },
                 {
                   "body": {
                     "id": 979,
                     "nodeType": "Block",
-                    "src": "1478:133:6",
+                    "src": "1633:133:6",
                     "statements": [
                       {
                         "condition": {
@@ -1306,7 +1306,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 947,
-                              "src": "1496:14:6",
+                              "src": "1651:14:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_array$_t_address_$3_memory_ptr",
                                 "typeString": "address[3] memory"
@@ -1320,7 +1320,7 @@
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": 955,
-                              "src": "1511:1:6",
+                              "src": "1666:1:6",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint8",
                                 "typeString": "uint8"
@@ -1331,7 +1331,7 @@
                             "isPure": false,
                             "lValueRequested": false,
                             "nodeType": "IndexAccess",
-                            "src": "1496:17:6",
+                            "src": "1651:17:6",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -1346,13 +1346,13 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 938,
-                            "src": "1517:8:6",
+                            "src": "1672:8:6",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
                             }
                           },
-                          "src": "1496:29:6",
+                          "src": "1651:29:6",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -1361,11 +1361,11 @@
                         "falseBody": null,
                         "id": 978,
                         "nodeType": "IfStatement",
-                        "src": "1492:109:6",
+                        "src": "1647:109:6",
                         "trueBody": {
                           "id": 977,
                           "nodeType": "Block",
-                          "src": "1527:74:6",
+                          "src": "1682:74:6",
                           "statements": [
                             {
                               "expression": {
@@ -1385,7 +1385,7 @@
                                           "nodeType": "Identifier",
                                           "overloadedDeclarations": [],
                                           "referencedDeclaration": 947,
-                                          "src": "1560:14:6",
+                                          "src": "1715:14:6",
                                           "typeDescriptions": {
                                             "typeIdentifier": "t_array$_t_address_$3_memory_ptr",
                                             "typeString": "address[3] memory"
@@ -1399,7 +1399,7 @@
                                           "nodeType": "Identifier",
                                           "overloadedDeclarations": [],
                                           "referencedDeclaration": 955,
-                                          "src": "1575:1:6",
+                                          "src": "1730:1:6",
                                           "typeDescriptions": {
                                             "typeIdentifier": "t_uint8",
                                             "typeString": "uint8"
@@ -1410,7 +1410,7 @@
                                         "isPure": false,
                                         "lValueRequested": false,
                                         "nodeType": "IndexAccess",
-                                        "src": "1560:17:6",
+                                        "src": "1715:17:6",
                                         "typeDescriptions": {
                                           "typeIdentifier": "t_address",
                                           "typeString": "address"
@@ -1429,7 +1429,7 @@
                                       "nodeType": "Identifier",
                                       "overloadedDeclarations": [],
                                       "referencedDeclaration": 789,
-                                      "src": "1552:7:6",
+                                      "src": "1707:7:6",
                                       "typeDescriptions": {
                                         "typeIdentifier": "t_type$_t_contract$_Company_$789_$",
                                         "typeString": "type(contract Company)"
@@ -1443,7 +1443,7 @@
                                     "lValueRequested": false,
                                     "names": [],
                                     "nodeType": "FunctionCall",
-                                    "src": "1552:26:6",
+                                    "src": "1707:26:6",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_contract$_Company_$789",
                                       "typeString": "contract Company"
@@ -1457,7 +1457,7 @@
                                   "memberName": "owner",
                                   "nodeType": "MemberAccess",
                                   "referencedDeclaration": 1046,
-                                  "src": "1552:32:6",
+                                  "src": "1707:32:6",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_external_view$__$returns$_t_address_$",
                                     "typeString": "function () view external returns (address)"
@@ -1471,7 +1471,7 @@
                                 "lValueRequested": false,
                                 "names": [],
                                 "nodeType": "FunctionCall",
-                                "src": "1552:34:6",
+                                "src": "1707:34:6",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_address",
                                   "typeString": "address"
@@ -1480,7 +1480,7 @@
                               "functionReturnParameters": 942,
                               "id": 976,
                               "nodeType": "Return",
-                              "src": "1545:41:6"
+                              "src": "1700:41:6"
                             }
                           ]
                         }
@@ -1505,7 +1505,7 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 955,
-                      "src": "1448:1:6",
+                      "src": "1603:1:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
@@ -1520,13 +1520,13 @@
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 926,
-                      "src": "1452:19:6",
+                      "src": "1607:19:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
                     },
-                    "src": "1448:23:6",
+                    "src": "1603:23:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -1544,7 +1544,7 @@
                         "name": "i",
                         "nodeType": "VariableDeclaration",
                         "scope": 980,
-                        "src": "1435:7:6",
+                        "src": "1590:7:6",
                         "stateVariable": false,
                         "storageLocation": "default",
                         "typeDescriptions": {
@@ -1555,7 +1555,7 @@
                           "id": 954,
                           "name": "uint8",
                           "nodeType": "ElementaryTypeName",
-                          "src": "1435:5:6",
+                          "src": "1590:5:6",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint8",
                             "typeString": "uint8"
@@ -1576,7 +1576,7 @@
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "1445:1:6",
+                      "src": "1600:1:6",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": "t_rational_0_by_1",
@@ -1585,7 +1585,7 @@
                       "value": "0"
                     },
                     "nodeType": "VariableDeclarationStatement",
-                    "src": "1435:11:6"
+                    "src": "1590:11:6"
                   },
                   "loopExpression": {
                     "expression": {
@@ -1598,7 +1598,7 @@
                       "nodeType": "UnaryOperation",
                       "operator": "++",
                       "prefix": false,
-                      "src": "1473:3:6",
+                      "src": "1628:3:6",
                       "subExpression": {
                         "argumentTypes": null,
                         "id": 961,
@@ -1606,7 +1606,7 @@
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 955,
-                        "src": "1473:1:6",
+                        "src": "1628:1:6",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint8",
                           "typeString": "uint8"
@@ -1619,10 +1619,10 @@
                     },
                     "id": 963,
                     "nodeType": "ExpressionStatement",
-                    "src": "1473:3:6"
+                    "src": "1628:3:6"
                   },
                   "nodeType": "ForStatement",
-                  "src": "1430:181:6"
+                  "src": "1585:181:6"
                 },
                 {
                   "expression": {
@@ -1632,7 +1632,7 @@
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 934,
-                    "src": "1627:13:6",
+                    "src": "1782:13:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
@@ -1641,11 +1641,11 @@
                   "functionReturnParameters": 942,
                   "id": 982,
                   "nodeType": "Return",
-                  "src": "1620:20:6"
+                  "src": "1775:20:6"
                 }
               ]
             },
-            "documentation": "@dev Look for the company on the companies array for this specific owner. \nIf the company is found for this msg.sender then we return the owner,\nin case the company is not found in the companies array 0x is returned.\n@param aCompany company address to search for owner.\n@return the owner's address or 0x if not found.",
+            "documentation": "@dev Look for the company on the companies array for this specific owner. \nIf the company is found for this msg.sender then we return the owner,\nin case the company is not found in the companies array 0x is returned.\n@param self This function will receive the object (where the data is \nstored) they are called on as their first parameter.\n@param aCompany company address to search for owner.\n@return the owner's address or 0x if not found.",
             "id": 984,
             "implemented": true,
             "kind": "function",
@@ -1662,7 +1662,7 @@
                   "name": "self",
                   "nodeType": "VariableDeclaration",
                   "scope": 984,
-                  "src": "1249:32:6",
+                  "src": "1404:32:6",
                   "stateVariable": false,
                   "storageLocation": "storage",
                   "typeDescriptions": {
@@ -1675,7 +1675,7 @@
                     "name": "CompanyFactory.Data",
                     "nodeType": "UserDefinedTypeName",
                     "referencedDeclaration": 817,
-                    "src": "1249:19:6",
+                    "src": "1404:19:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_struct$_Data_$817_storage_ptr",
                       "typeString": "struct CompanyFactory.Data"
@@ -1690,7 +1690,7 @@
                   "name": "aCompany",
                   "nodeType": "VariableDeclaration",
                   "scope": 984,
-                  "src": "1283:16:6",
+                  "src": "1438:16:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1701,7 +1701,7 @@
                     "id": 937,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1283:7:6",
+                    "src": "1438:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1712,7 +1712,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1248:52:6"
+              "src": "1403:52:6"
             },
             "returnParameters": {
               "id": 942,
@@ -1724,7 +1724,7 @@
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "scope": 984,
-                  "src": "1322:7:6",
+                  "src": "1477:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1735,7 +1735,7 @@
                     "id": 940,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1322:7:6",
+                    "src": "1477:7:6",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -1746,35 +1746,41 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1321:9:6"
+              "src": "1476:9:6"
             },
             "scope": 985,
-            "src": "1223:424:6",
+            "src": "1378:424:6",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
         "scope": 986,
-        "src": "569:1081:6"
+        "src": "569:1236:6"
       }
     ],
-    "src": "0:1651:6"
+    "src": "0:1806:6"
   },
   "compiler": {
     "name": "solc",
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0xCa901C6634dF9cf2E37b5b14C1A6eDA52520562C",
+      "transactionHash": "0xc45b076000e45249e496b436a03de2c81248b8251e55259481137db7fe01bf9a"
+    },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xC94340D6B3949B50ad5736b216b3edBc85e4E000",
-      "transactionHash": "0x810ba8dc2471601447d29e21017dbe1b4b1561f90c85c0ca4d278bdcb3e6217e"
+      "address": "0x447D1769768b070d88E7836f6d7Aa706D303B7B4",
+      "transactionHash": "0x8d6915cc1bfdcbe739c3a2ac9e7452d91fbd6a32bb80ea1a3733c1509ce37582"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-26T21:19:16.697Z",
+  "updatedAt": "2019-01-27T03:19:29.005Z",
   "devdoc": {
     "author": "Juan Castellon",
     "details": "CompanyFactory is a factory pattern implemented via a Library, that  will be used to create new companies. It will basically conglomerate all the logic related to companies creation and it's business rules.  At the moment creates instances for every request without any  validation, but the plan is to add all business rules here to create  companies. ",
@@ -1782,7 +1788,8 @@
       "findCompanyOwner(CompanyFactory.Data storage,address)": {
         "details": "Look for the company on the companies array for this specific owner.  If the company is found for this msg.sender then we return the owner, in case the company is not found in the companies array 0x is returned.",
         "params": {
-          "aCompany": "company address to search for owner."
+          "aCompany": "company address to search for owner.",
+          "self": "This function will receive the object (where the data is  stored) they are called on as their first parameter."
         },
         "return": "the owner's address or 0x if not found."
       }

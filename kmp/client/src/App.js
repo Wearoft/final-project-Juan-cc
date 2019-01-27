@@ -239,7 +239,7 @@ class App extends Component {
     event.preventDefault();
     await this.handleAccountChange();
     const { accounts, kmpContract, companyAddress, tokenAddress} = this.state;
-    const callMethod = kmpContract.methods.findCompanyToken(companyAddress, tokenAddress);
+    const callMethod = kmpContract.methods.findCompanyTokenUtil(companyAddress, tokenAddress);
     await callMethod.call({ from: accounts[0]})
     .then((receipt) => {
       console.log(receipt);

@@ -23,8 +23,10 @@ library CompanyUtil {
     /** @dev Look for the company on the companies array for this specific owner. 
         If the company is found for this msg.sender then we return the owner,
         in case the company is not found in the companies array 0x is returned.
-    @param aCompany company address to search for owner.
-    @return the owner's address or 0x if not found.
+        @param self This function will receive the object (where the data is 
+                stored) they are called on as their first parameter.
+        @param aCompany company address to search for owner.
+        @return the owner's address or 0x if not found.
      */
     function findCompanyOwner(CompanyFactory.Data storage self, address aCompany) public view returns (address) {
         address[MAX_OWNER_COMPANIES] memory ownerCompanies = self.companies[msg.sender];

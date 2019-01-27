@@ -34,7 +34,7 @@ contract Platform is Owned {
     address public constant EMPTY_ADDRESS = address(0);
 
     /** State variables */
-    CompanyFactory.Data private companyFactory;
+    CompanyFactory.Data private platformData;
     bool internal stopped = false; // Circuit breaker
 
     /** Events */
@@ -109,7 +109,7 @@ contract Platform is Owned {
         stopInEmergency 
         returns (Company) 
     {
-        Company newCompany = companyFactory.createCompany(
+        Company newCompany = platformData.createCompany(
             companyName,
             phone,
             url,
@@ -141,10 +141,10 @@ contract Platform is Owned {
     )
         external
         stopInEmergency
-        onlyCompanyOwner(companyFactory.findCompanyOwner(bcCompany))
+        onlyCompanyOwner(platformData.findCompanyOwner(bcCompany))
         returns (Token)
     {
-        Token newToken = companyFactory.createTokenForCompany(
+        Token newToken = platformData.createTokenForCompany(
             bcCompany,
             name,
             symbol,
@@ -173,11 +173,11 @@ contract Platform is Owned {
     )
         external
         view
-        onlyCompanyOwner(companyFactory.findCompanyOwner(company))
+        onlyCompanyOwner(platformData.findCompanyOwner(company))
         returns (uint256 aBalance)
     {
         require(
-            EMPTY_ADDRESS != companyFactory.findCompanyToken(company, token),
+            EMPTY_ADDRESS != platformData.findCompanyToken(company, token),
             "Token not found."
         );
         bytes memory payload = abi.encodeWithSignature(
@@ -191,6 +191,35 @@ contract Platform is Owned {
         return aBalance;
     }
 
+    /** @dev This is a util function to expose functionality of the CompanyUtil
+            Library. It looks for the company on the companies array for this 
+            specific owner. If the company is found for this msg.sender then we
+            return the owner, in case the company is not found in the companies
+            array 0x is returned.
+        @param aCompany company address to search for owner.
+        @return the owner's address or 0x if not found.
+     */
+    function findCompanyOwnerUtil(address aCompany) 
+        external
+        view
+        returns (address)
+    {
+        return platformData.findCompanyOwner(aCompany);
+    }
+
+    /** @dev This is a util function to expose functionality of the TokenUtil
+            Library. Look for a token inside a company list of tokens.
+        @param aCompany company address to search
+        @param aToken token address to search
+        @return token address if found, 0x if not found. 
+     */
+    function findCompanyTokenUtil(address aCompany, address aToken) 
+        external
+        view
+        returns (address)
+    {
+        return platformData.findCompanyToken(aCompany, aToken);
+    }
 
     /** @dev Circuit breaker switch to pause this contract state changes or
             resume.

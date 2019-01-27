@@ -3,7 +3,6 @@ pragma solidity ^0.5.0;
 import "truffle/Assert.sol";
 import "truffle/DeployedAddresses.sol";
 import "../contracts/Token.sol";
-import "./ThrowProxy.sol";
 
 contract TestToken {
     address constant COMPANY = 0x6635F83421Bf059cd8111f180f0727128685BaE4;

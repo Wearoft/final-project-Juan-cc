@@ -23,6 +23,7 @@ module.exports = function(deployer, network, accounts) {
   deployer.link(CompanyFactory, Platform);
   deployer.link(TokenUtil, Platform);
   deployer.deploy(Platform);
+  
   deployer.deploy(Token, "0x31b98d14007bdee637298086988a0bbd31184523", accounts[0], "Tokenizer", "TKN", 1000);
 
  

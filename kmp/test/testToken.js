@@ -1,6 +1,6 @@
 var Token = artifacts.require("./Token.sol");
 
-contract('KMToken', function(accounts) {
+contract('Token', function(accounts) {
   
   let tokenInstance;
   

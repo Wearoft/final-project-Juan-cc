@@ -43,7 +43,6 @@ contract TestPlatform {
             SOME_ADDRESS
         );
         Assert.equal(newBc.name(), companyName, "Company name is incorrect.");
-
     }
 
     function testCreateToken() public {
@@ -82,11 +81,19 @@ contract TestPlatform {
         uint256 userBalance = kmp.getUserTokenBalance(
             address(bc),
             address(token),
-            SOME_ADDRESS
+            SOME_ADDRESS // this is a fake user address, so we expect to throw.
         );
         Assert.equal(userBalance, 0, "User token balance incorrect");
     }
 
-
-
+    function testGetUserTokenZeroBalanceThrow() public {
+        bytes memory payload = abi.encodeWithSignature(
+            "getUserTokenBalance(address,address,address)",
+            address(bc),
+            address(SOME_ADDRESS), // this is a fake token address, so 0 balance is expected.
+            address(this) 
+        );
+        (bool result, ) = address(kmp).call(payload);
+        Assert.isFalse(result, "We should get exception trying to retrieve non-existing token balance");
+    }
 }
