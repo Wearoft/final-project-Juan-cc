@@ -1,21 +1,4 @@
 
-The following networks are configured to match any network id ('*'):
-
-    coverage
-    development
-
-Closely inspect the deployed networks below, and use `truffle networks --clean` to remove any networks that don't match your configuration. You should not use the wildcard configuration ('*') for staging and production networks for which you intend to deploy your application.
-
-Network: UNKNOWN (id: 5777)
-  CompanyFactory: 0x7f05d5F6C6dCD36622CBb5DcA68741f4ddb1C4b5
-  CompanyUtil: 0xe7dFB5042C707F41425D47c16bB4B9E351c1E18c
-  Migrations: 0x86dDF48A3BC1cb3dCa6a19d9d7e2feed91ee25dB
-  Owned: 0xAEbb16CbB8E9e018DAfb1646e05c20B02d2A8951
-  Platform: 0xfc0bC07679050b8642dD62B1c2e842197754B5C4
-  Token: 0xF4Aefc7F1b8fD51b38f47c38fE16D74Dc69677f3
-  TokenFactory: 0x03540322CC9885D70913521E26D59c9BB1546264
-  TokenUtil: 0x66E32CF3d5A10C9078B4158cF7Fc08511F4b6a66
-
 Network: rinkeby (id: 4)
   CompanyFactory: 0x2371a23d23010A157521ff56dc9Eb07b0EdCd9df
   CompanyUtil: 0x5C28ee9463c5B6D0a581FF1a3D60a4AD7f30e147

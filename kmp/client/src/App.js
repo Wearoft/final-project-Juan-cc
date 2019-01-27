@@ -27,6 +27,7 @@ class App extends Component {
                             '0x65DC4b39c3c372B20497c9676FeD8D1cba663995'
                           ],
       companyCounter: 0,
+      amountToTransfer: 10,
       companySelected: -1,
       tokenCounter: 0,
       companyName: 'Company name',
