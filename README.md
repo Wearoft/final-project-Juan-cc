@@ -21,6 +21,7 @@ final-project-Juan-cc
 - start your browser and authenticate metamask to Rinkeby
 - go to https://kmpblockchain.herokuapp.com/
 - Play with it!
+- _tip: when using the dApp open browser's developer console and wait until the confirmation is confirmed before pressing another button._ 
 
 ## Run Locally
 ### Setup
@@ -29,7 +30,7 @@ final-project-Juan-cc
   - go to /final-project-Juan-cc/kmp/client and run: **npm install && npm run link-contracts**
   - start ganache on port 8545
 ### Unit Testing
-  - tip: if you have a symbolic link called "contracts" inside /final-project-Juan-cc/kmp/build/contracts, then please delete that link to avoid the error described below *1  
+  - _tip: if you have a symbolic link called "contracts" inside /final-project-Juan-cc/kmp/build/contracts, then please delete that link to avoid the error described below (*1)_  
   - on /final-project-Juan-cc/kmp run: **truffle migrate --reset --all**
   - on /final-project-Juan-cc/kmp run: **truffle test** (here you can validate unit tests)
 ### dApp
