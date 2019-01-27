@@ -22,7 +22,7 @@ contract TestToken {
 
     function beforeEach() public {
          // creating new token
-        Token token = new Token(
+        token = new Token(
             COMPANY,
             owner,
             NAME,

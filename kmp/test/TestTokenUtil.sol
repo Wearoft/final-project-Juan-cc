@@ -46,13 +46,13 @@ contract TestTokenUtil {
         bool result = data.tokenInCompany(address(bc), address(token));
         // validating we found that token
         Assert.isTrue(result, "Token not found.");
-     }
+    }
 
     function testTokenNotFoundInCompany() public {
         // defining a nonexistent token address
         address nonExistentToken = 0xFC18Cbc391dE84dbd87dB83B20935D3e89F5dd91;
         // searching token into company's tokens array
-        result = data.tokenInCompany(address(bc), address(nonExistentToken));
+        bool result = data.tokenInCompany(address(bc), address(nonExistentToken));
         // validating we get false when searching a nonexistent token on this company
         Assert.isFalse(result, "Non-Existent Token was found, but shouldn't.");
 

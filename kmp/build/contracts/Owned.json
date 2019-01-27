@@ -195,10 +195,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1750,
-                        1751
+                        1707,
+                        1708
                       ],
-                      "referencedDeclaration": 1751,
+                      "referencedDeclaration": 1708,
                       "src": "921:7:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -308,7 +308,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1747,
+                        "referencedDeclaration": 1704,
                         "src": "1176:3:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -435,7 +435,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1747,
+                      "referencedDeclaration": 1704,
                       "src": "1441:3:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -680,10 +680,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        1750,
-                        1751
+                        1707,
+                        1708
                       ],
-                      "referencedDeclaration": 1751,
+                      "referencedDeclaration": 1708,
                       "src": "921:7:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -793,7 +793,7 @@
                         "name": "msg",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1747,
+                        "referencedDeclaration": 1704,
                         "src": "1176:3:8",
                         "typeDescriptions": {
                           "typeIdentifier": "t_magic_message",
@@ -920,7 +920,7 @@
                       "name": "msg",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1747,
+                      "referencedDeclaration": 1704,
                       "src": "1441:3:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_magic_message",
@@ -1023,18 +1023,18 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x531C97656F21937A47c36076F62571a25e4BA073",
-      "transactionHash": "0xb065efd740d1326b5750f331d406611179beca003713701628d2d5cc02473b52"
+      "address": "0xaEb8586Be2ED581d84BD48f34d6331B1a8dd7930",
+      "transactionHash": "0xe0e1c2ff493ac84bd7871f9d8ac7ada5d63be6af189006d9ba966be82481b476"
     },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x709e2EC9956257e9F3A368Bf90456061cDF45A6c",
-      "transactionHash": "0x085662ec27a6d479e13f79216e4f77080634bcc603d43852ebc803b263e7cc9e"
+      "address": "0xAEbb16CbB8E9e018DAfb1646e05c20B02d2A8951",
+      "transactionHash": "0x6725ea3c518bc4644ca69f709dcebbe390ba5aac44742863bd94c429f7aaf012"
     }
   },
   "schemaVersion": "3.0.0",
-  "updatedAt": "2019-01-27T03:19:29.007Z",
+  "updatedAt": "2019-01-27T18:02:59.752Z",
   "devdoc": {
     "author": "Juan Castellon",
     "details": "This contract will be used to set the owner of a contract and to  validate that only the owner can execute certain action on the Platform. This was created before I realize there was an audited Ownable contract  from OpenZeppelin so I may use their implementation in the future. ",
