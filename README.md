@@ -21,7 +21,7 @@ final-project-Juan-cc
 - start your browser and authenticate metamask to Rinkeby
 - go to https://kmpblockchain.herokuapp.com/
 - Play with it!
-- _tip1: when using the dApp open browser's developer console and wait until the confirmation is confirmed before pressing another button._
+- _tip1: when using the dApp open browser's developer console and wait until you see a confirmation log in the console (or metamask confirmation) before pressing another button._
 - _tip2: this is a testing dApp so don't expect any form validation. All form fields are required, if you submit a call without any of the params then expect an error and reload the page._
 
 ## Run Locally
