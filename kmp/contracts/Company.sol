@@ -35,6 +35,7 @@ contract Company is Owned {
         string url
     );
 
+    /** Constructors */
     /** @dev Default constructor where the owner and all attributes
             of a company are set.
         @param anOwner the address of this company's owner.
@@ -60,13 +61,14 @@ contract Company is Owned {
         admins[owner] = true;
     }
 
+    /** Functions */
     /** @dev this method will be executed to terminate a company. At the moment
             It's not fully implemented yet.        
      */
     function terminateCompany() external ownerOnly(msg.sender) {
         // TODO: before selfdestruction delegate token ownership to 
         // newCompanyContract.
-        selfdestruct(msg.sender);
         emit CompanyTerminated(address(this), name, phone, url);
+        selfdestruct(msg.sender);
     }
 }

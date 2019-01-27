@@ -7,7 +7,10 @@ import "../contracts/CompanyUtil.sol";
 import "../contracts/Platform.sol";
 
 contract TestCompanyUtil {
+    // setting CompanyFactory library to use over Data/data
     using CompanyFactory for CompanyFactory.Data;
+    // also setting CompanyUtil library to use over Data/data. YES! we will use
+    // 2 libraries over the same data struct :o
     using CompanyUtil for CompanyFactory.Data;
     CompanyFactory.Data private data;
 
@@ -21,6 +24,7 @@ contract TestCompanyUtil {
     uint256 constant TOTAL_SUPPLY = 1000;
 
     function beforeAll() public {
+        // creating the company we will use along the test suite
         bc = data.createCompany(
             "Global Company Name",
             "123456789",
@@ -28,17 +32,22 @@ contract TestCompanyUtil {
             "did:eth:0x2f3fcf4c3",
             SOME_ADDRESS
         );
-        
     }
 
     
     function testFindCompanyOwner() public {
+        // searching the owner of the company just created
         address owner = data.findCompanyOwner(address(bc));
+        // validating the owner who created the company and the one we found 
+        // are the same. In this case, the company creator = owner is this 
+        // test contract.
         Assert.equal(owner, bc.owner(), "Company owner found not correct.");
     }
 
-    function testFindCompanyOwnerNotFound() public {
+    function testFindCompanyOwnerCompanyNotFound() public {
+        // searching owner on inexistent company
         address owner = data.findCompanyOwner(address(SOME_ADDRESS));
+        // validating no owner was found
         Assert.equal(owner, address(0), "We found an owner and we shouldn't.");
     }
 

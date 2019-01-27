@@ -12,8 +12,10 @@ contract TestCompany {
     address constant SOME_ADDRESS = 0xdA35deE8EDDeAA556e4c26268463e26FB91ff74f;
     address constant FAKE_OWNER = 0xD6aE8250b8348C94847280928c79fb3b63cA453e;
 
+    
     function testCreateCompany() public {
         string memory companyName = "Bus Company Name";
+        // creating new company
         bc = new Company(
             address(this),
             companyName,
@@ -22,11 +24,13 @@ contract TestCompany {
             "did:eth:0x2f3fcf4c3",
             SOME_ADDRESS
         );
+        // validating company name is the one we previously set
         Assert.equal(companyName, bc.name(), "Company not created");
     }
 
     function testModifyCompanyOwner() public {
-        bc = new Company(
+        // here we create the company 
+        bc = new Company(  
             address(this),
             "Bus Company Name",
             "123456789",
@@ -34,7 +38,9 @@ contract TestCompany {
             "did:eth:0x2f3fcf4c3",
             SOME_ADDRESS
         );
+        // trying to modify owner
         bc.modifyOwner(FAKE_OWNER);
+        // validating owner was changed successfuly
         Assert.equal(
             bc.owner(),
             FAKE_OWNER,
@@ -43,6 +49,7 @@ contract TestCompany {
     }
 
     function testModifyCompanyOwnerException() public {
+        // creating new company
         bc = new Company(
             FAKE_OWNER,
             "Bus Company Name",
@@ -51,15 +58,22 @@ contract TestCompany {
             "did:eth:0x2f3fcf4c3",
             SOME_ADDRESS
         );
+        // trying to modify owner but it will fail as is not the owner who is 
+        // calling this function.
+        // preparing the messsage to use low level call to encapsulate exception.
         bytes memory payload = abi.encodeWithSignature(
             "modifyOwner(address)",
             address(this)
         );
+        // calling function
         (bool result, ) = address(bc).call(payload);
+        // validating result is false, as it should throw exception due to incorrect
+        // owner and should return false.
         Assert.isFalse(result, "Only the owner can terminate a company");
     }
 
     function testTerminateCompanyWithException() public {
+        // creating company
         bc = new Company(
             FAKE_OWNER,
             "Bus Company Name",
@@ -68,12 +82,18 @@ contract TestCompany {
             "did:eth:0x2f3fcf4c3",
             SOME_ADDRESS
         );
+        // trying to call terminateCompany() from an account that is not the
+        // owner. It should fail and return false.
+        // preparing message call
         bytes memory payload = abi.encodeWithSignature("terminateCompany()");
+        // calling function
         (bool result, ) = address(bc).call(payload);
+        // validating result is false due to incorrect owner
         Assert.isFalse(result, "Only owner can terminate company");
     }
 
     function testTerminateCompany() public {
+        // creating company
         bc = new Company(
             address(this),
             "Bus Company Name",
@@ -82,9 +102,11 @@ contract TestCompany {
             "did:eth:0x2f3fcf4c3",
             SOME_ADDRESS
         );
-        //bytes memory payload = abi.encodeWithSignature("terminateCompany()");
-        //(bool result, ) = address(bc).call(payload);
+        // calling terminate company
         bc.terminateCompany();
-        //Assert.isTrue(result, "Owner should be able to terminate company");
+        // we should get no exception. TODO: find a way to do this 
+        // web3.eth.getCode(yourContractAddress) in solidity to validate the 
+        // company code got removed.
+        
     }
 }

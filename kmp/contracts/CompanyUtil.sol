@@ -22,7 +22,7 @@ library CompanyUtil {
 
     /** @dev Look for the company on the companies array for this specific owner. 
         If the company is found for this msg.sender then we return the owner,
-        in case the company is not found in the companies array 0x is returned.
+        in case the company is not found in the companies array, 0x is returned.
         @param self This function will receive the object (where the data is 
                 stored) they are called on as their first parameter.
         @param aCompany company address to search for owner.
