@@ -29,7 +29,7 @@ final-project-Juan-cc
   - go to /final-project-Juan-cc/kmp and run: **npm install**
   - go to /final-project-Juan-cc/kmp/client and run: **npm install**
   - _tip1: if you have a symbolic link called "contracts" inside /final-project-Juan-cc/kmp/build/contracts, then please delete that link to avoid the error described below (*1)_  
-  - _tip2: if you cant find the contracts folder then run: **npm run link-contracts** in /final-project-Juan-cc/kmp/client folder.
+  - _tip2: if you cant find the contracts folder then run: **npm run link-contracts** in /final-project-Juan-cc/kmp/client folder._
   - start ganache on port 8545
 ### Unit Testing
   - on /final-project-Juan-cc/kmp run: **truffle compile --all**  
