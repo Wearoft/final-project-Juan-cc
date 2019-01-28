@@ -28,10 +28,11 @@ final-project-Juan-cc
 ### Setup
   - download project source code.
   - go to /final-project-Juan-cc/kmp and run: **npm install**
-  - go to /final-project-Juan-cc/kmp/client and run: **npm install && npm run link-contracts**
+  - go to /final-project-Juan-cc/kmp/client and run: **npm install**
+  - _tip1: if you have a symbolic link called "contracts" inside /final-project-Juan-cc/kmp/build/contracts, then please delete that link to avoid the error described below (*1)_  
+  - _tip2: if you cant find the contracts folder then run: **npm run link-contracts** in /final-project-Juan-cc/kmp/client folder.
   - start ganache on port 8545
 ### Unit Testing
-  - _tip: if you have a symbolic link called "contracts" inside /final-project-Juan-cc/kmp/build/contracts, then please delete that link to avoid the error described below (*1)_  
   - on /final-project-Juan-cc/kmp run: **truffle compile --all**  
   - on /final-project-Juan-cc/kmp run: **truffle migrate --reset --all**
   - on /final-project-Juan-cc/kmp run: **truffle test** (here you can validate unit tests)
