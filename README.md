@@ -32,6 +32,7 @@ final-project-Juan-cc
   - start ganache on port 8545
 ### Unit Testing
   - _tip: if you have a symbolic link called "contracts" inside /final-project-Juan-cc/kmp/build/contracts, then please delete that link to avoid the error described below (*1)_  
+  - on /final-project-Juan-cc/kmp run: **truffle compile --all**  
   - on /final-project-Juan-cc/kmp run: **truffle migrate --reset --all**
   - on /final-project-Juan-cc/kmp run: **truffle test** (here you can validate unit tests)
 ### dApp
