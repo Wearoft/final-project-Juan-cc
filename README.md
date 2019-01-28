@@ -15,7 +15,6 @@ final-project-Juan-cc
 - Truffle v5.0.0 (core: 5.0.0)
 - Solidity v0.5.0 (solc-js)
 - Node v8.10.0
-- Web3 ^1.0.0-beta.35
 
 ## Play on Rinkeby
 - start your browser and authenticate metamask to Rinkeby
