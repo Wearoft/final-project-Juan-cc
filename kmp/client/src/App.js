@@ -71,7 +71,7 @@ class App extends Component {
         Platform.abi,
         deployedNetwork && deployedNetwork.address,
       );
-
+      console.log(kmpContractInstance);
       // Getting PAST company events
       const companyEventFilter = { filter:{owner: accounts[0]}, fromBlock: 0, toBlock: 'latest'};
       const companyEventsList = await kmpContractInstance.getPastEvents('KMPCompanyCreated', companyEventFilter);
