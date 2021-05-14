@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "solidity-coverage": "0.5.11"
+    "solidity-coverage": "0.7.12"
   },
   "scripts": {
     "coverage": "scripts/coverage.sh",
