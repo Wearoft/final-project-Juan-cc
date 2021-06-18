@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1",
+    "react-scripts": "3.0.0",
     "bootstrap": "4.2.1",
     "web3": "^1.0.0-beta.35",
     "run-script-os": "^1.0.3",
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Juan-cc/final-project-Juan-cc",
   "devDependencies": {
     "run-script-os": "^1.0.3",
-    "react-scripts": "2.1.1",
+    "react-scripts": "3.0.0",
     "mocha-lcov-reporter": "1.3.0"
   }
 }
